@@ -4,16 +4,21 @@ import {
   Building2,
   ShieldCheck,
   SlidersHorizontal,
+  type LucideIcon,
 } from 'lucide-react';
 
 type Item = { text: React.ReactNode };
+
+type Theme = 'dark' | 'light';
+type Badge = 'Setup' | 'Post‑Setup' | 'Custom & PPS';
+
 type Pkg = {
-  theme: 'dark' | 'light';
-  badge: string;
+  theme: Theme;
+  badge: Badge;
   title: string;
   subtitle: string;
   items: Item[];
-  brochure: string;
+  brochure: string; // path under /public (e.g. /brochures/xxx.pdf)
 };
 
 const PACKAGES: Pkg[] = [
@@ -51,16 +56,20 @@ const PACKAGES: Pkg[] = [
     title: 'Tailored & PPS',
     subtitle: 'Exactly what you need — as a bundle or pay‑per‑service.',
     items: [
-      <>
-        <strong>Etimad onboarding & working sessions</strong> — account
-        creation, readiness, and hands‑on enablement
-      </>,
+      {
+        text: (
+          <>
+            <strong>Etimad onboarding & working sessions</strong> — account
+            creation, readiness, and hands‑on enablement
+          </>
+        ),
+      },
       { text: 'Customized scope after discovery with your team' },
       { text: 'Certificate issuances with Saudi authorities (all types)' },
       {
         text: 'Targeted prospecting: curated list of potential clients to reach out to',
       },
-    ] as Item[],
+    ],
     brochure: '/brochures/catalyft-tailored-pps.pdf',
   },
 ];
@@ -95,14 +104,15 @@ export default function Services() {
 
 /* ---------------- subcomponents ---------------- */
 
+const ICON_MAP: Record<Badge, LucideIcon> = {
+  Setup: Building2,
+  'Post‑Setup': ShieldCheck,
+  'Custom & PPS': SlidersHorizontal,
+};
+
 function ServiceCard({ pkg }: { pkg: Pkg }) {
   const isDark = pkg.theme === 'dark';
-
-  const Icon = iMatch(pkg.badge, {
-    Setup: Building2,
-    'Post‑Setup': ShieldCheck,
-    default: SlidersHorizontal,
-  });
+  const Icon = ICON_MAP[pkg.badge];
 
   return (
     <div
@@ -113,6 +123,7 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
           : 'bg-white text-neutral-900 border-neutral-200',
       ].join(' ')}
     >
+      {/* header */}
       <div className="mb-6 flex items-center justify-between">
         <span
           className={[
@@ -122,11 +133,12 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
               : 'bg-neutral-100 text-neutral-700',
           ].join(' ')}
         >
-          {Icon ? <Icon className="size-4" /> : null}
+          <Icon className="size-4" />
           {pkg.badge}
         </span>
       </div>
 
+      {/* title & subtitle */}
       <h3
         className={[
           'text-2xl font-bold',
@@ -144,6 +156,7 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
         {pkg.subtitle}
       </p>
 
+      {/* list grows to push footer down */}
       <ul className="mt-6 flex flex-1 flex-col gap-2">
         {pkg.items.map((it, idx) => (
           <li
@@ -164,6 +177,7 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
         ))}
       </ul>
 
+      {/* footer: single row, aligned across all cards */}
       <div className="mt-8 flex justify-start">
         <a
           href={pkg.brochure}
@@ -181,11 +195,4 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
       </div>
     </div>
   );
-}
-
-function iMatch<T extends Record<string, any>>(
-  key: string,
-  map: T & { default: any }
-) {
-  return map[key as keyof T] ?? map.default;
 }
