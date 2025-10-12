@@ -1,3 +1,4 @@
+// app/services/operate/page.tsx
 import type { Metadata } from 'next';
 import {
   ShieldCheck,
@@ -11,6 +12,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import OperateFaq from '../../../components/OperateFaq'; // use '@/components/OperateFaq' if you use path aliases
+import ContactButton from '@/components/ContactButton';
 
 export const metadata: Metadata = {
   title:
@@ -39,13 +41,6 @@ export default function OperatePage() {
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:hello@catalyft.sa?subject=Operate%20in%20Saudi%20Discovery%20Call"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-neutral-200"
-            >
-              <Mail className="size-4" />
-              Email us (20-min discovery)
-            </a>
             <a
               href="#offer"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
@@ -124,7 +119,7 @@ export default function OperatePage() {
       {/* FAQ (collapsible, client component) */}
       <OperateFaq />
 
-      {/* FINAL CTA (add id + scroll offset for sticky header) */}
+      {/* FINAL CTA — modal + email fallback */}
       <section id="contact" className="scroll-mt-24 bg-black text-white">
         <div className="mx-auto max-w-6xl px-6 py-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
@@ -134,13 +129,18 @@ export default function OperatePage() {
             Send us a note and we’ll share the package that fits your stage and
             team.
           </p>
-          <div className="mt-6">
-            <a
-              href="mailto:hello@catalyft.sa?subject=Operate%20in%20Saudi%20Discovery%20Call"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200"
-            >
+
+          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <ContactButton className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
               <Mail className="size-4" />
-              Email us: hello@catalyft.sa
+              Book a consultation
+            </ContactButton>
+
+            <a
+              href="mailto:info@catalyft.sa?subject=Catalyft%20Service%20Inquiry"
+              className="text-sm text-white/70 underline underline-offset-4 hover:text-white"
+            >
+              or email us: info@catalyft.sa
             </a>
           </div>
         </div>

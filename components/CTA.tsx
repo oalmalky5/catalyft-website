@@ -1,11 +1,13 @@
-// components/CTA.tsx
+'use client';
+
 import { Mail } from 'lucide-react';
+import ContactButton from '@/components/ContactButton'; // uses openContact()
 
 export default function CTA() {
   return (
     <section
-      id="contact" // ← anchor for the nav
-      className="bg-black text-white px-6 py-20 scroll-mt-20" // offset under sticky nav
+      id="contact" // ← anchor for the nav to scroll to
+      className="bg-black text-white px-6 py-20 scroll-mt-20"
       aria-labelledby="cta-title"
     >
       <div className="mx-auto max-w-3xl text-center">
@@ -21,17 +23,23 @@ export default function CTA() {
         </h2>
 
         <p className="mt-4 text-white/70 text-base md:text-lg">
-          Book a free 20‑minute discovery call. We’ll answer your questions, map
-          your expansion path, and help you plan with clarity.
+          Book a free discovery call. We’ll answer your questions, map your
+          expansion path, and help you plan with clarity.
         </p>
 
-        <div className="mt-8 flex justify-center">
-          <a
-            href="mailto:hello@catalyft.sa"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-neutral-200 transition"
-          >
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          {/* Primary: open the modal form */}
+          <ContactButton className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
             <Mail className="size-4" />
-            Email Us: hello@catalyft.sa
+            Book a discovery call
+          </ContactButton>
+
+          {/* Optional secondary: keep a plain mailto fallback/link */}
+          <a
+            href="mailto:hello@catalyft.sa?subject=Catalyft%20Website%20Inquiry"
+            className="text-sm text-white/70 underline underline-offset-4 hover:text-white"
+          >
+            or email us: info@catalyft.sa
           </a>
         </div>
 
