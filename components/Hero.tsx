@@ -1,3 +1,5 @@
+import ServicesMenuButton from './ServicesMenuButton';
+
 export default function Hero() {
   return (
     <section
@@ -27,13 +29,9 @@ export default function Hero() {
       </p>
 
       {/* CTA */}
-      <div className="mt-8">
-        <a
-          href="/products"
-          className="rounded-md border border-white bg-white px-6 py-3 text-sm font-medium text-black hover:bg-gray-100"
-        >
-          Explore Our Services
-        </a>
+      <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        {/* replace the old link with: */}
+        <ServicesMenuButton variant="light" />
       </div>
     </section>
   );

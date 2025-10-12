@@ -1,66 +1,63 @@
-// components/Services.tsx
+import Link from 'next/link';
 import {
-  FileDown,
   Building2,
   ShieldCheck,
-  SlidersHorizontal,
+  TrendingUp,
   type LucideIcon,
 } from 'lucide-react';
 
 type Item = { text: React.ReactNode };
 
 type Theme = 'dark' | 'light';
-type Badge = 'Setup' | 'Post‑Setup' | 'Custom & PPS';
+type Badge = 'Launch' | 'Operate' | 'Scale';
 
-type Pkg = {
+type Offering = {
   theme: Theme;
   badge: Badge;
   title: string;
   subtitle: string;
   items: Item[];
-  brochure: string; // path under /public (e.g. /brochures/xxx.pdf)
+  href: string; // route to the detail page
 };
 
-const PACKAGES: Pkg[] = [
+const OFFERINGS: Offering[] = [
   {
     theme: 'dark',
-    badge: 'Setup',
-    title: 'Foundation Setup',
+    badge: 'Launch',
+    title: 'Launch (Foundation Setup)',
     subtitle: 'Start in Saudi with a precise, engineered launch.',
     items: [
-      {
-        text: 'Set up a branch of a foreign company (MISA issuance & approvals)',
-      },
-      { text: 'Establish a new company from scratch in KSA' },
-      { text: 'Structure a Saudi‑owned brand / joint venture' },
-      { text: 'Initial operational scaffolding ready for day‑one execution' },
+      { text: 'Branch of a foreign company (MISA issuance & approvals)' },
+      { text: 'New company set-up from scratch in KSA' },
+      { text: 'Saudi-owned brand / joint-venture structuring' },
+      { text: 'Day-one operational scaffolding ready to run' },
     ],
-    brochure: '/brochures/catalyft-foundation-setup.pdf',
+    href: '/services/launch',
   },
   {
     theme: 'light',
-    badge: 'Post‑Setup',
-    title: 'Continuity & Compliance',
+    badge: 'Operate',
+    title: 'Operate (Continuity & Compliance)',
     subtitle: 'Keep operations stable, compliant, and moving.',
     items: [
-      { text: 'Renewals and monthly actions (policy, filings, and reminders)' },
+      { text: 'Renewals & monthly actions (policies, filings, reminders)' },
       { text: 'GOSI, payroll rhythms, and HR guardrails' },
       { text: 'Operational enablement sessions (incl. Etimad readiness)' },
       { text: 'Ongoing operational oversight with clear SLAs' },
     ],
-    brochure: '/brochures/catalyft-continuity-compliance.pdf',
+    href: '/services/operate', // create later
   },
   {
     theme: 'dark',
-    badge: 'Custom & PPS',
-    title: 'Tailored & PPS',
-    subtitle: 'Exactly what you need — as a bundle or pay‑per‑service.',
+    badge: 'Scale',
+    title: 'Scale (Custom & PPS)',
+    subtitle: 'Exactly what you need — bundle or pay-per-service.',
     items: [
       {
         text: (
           <>
             <strong>Etimad onboarding & working sessions</strong> — account
-            creation, readiness, and hands‑on enablement
+            creation, readiness, and hands-on enablement
           </>
         ),
       },
@@ -70,7 +67,7 @@ const PACKAGES: Pkg[] = [
         text: 'Targeted prospecting: curated list of potential clients to reach out to',
       },
     ],
-    brochure: '/brochures/catalyft-tailored-pps.pdf',
+    href: '/services/scale', // create later
   },
 ];
 
@@ -83,18 +80,18 @@ export default function Services() {
             Services
           </p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-            Packages built for momentum
+            Built to Launch, Operate, and Scale
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-neutral-700">
-            Choose a package—or mix and match with pay‑per‑service. We lift,
-            align, and launch your operations in Saudi with clarity and
-            predictable execution.
+            Pick the track you need now—or mix and match. We lift, align, and
+            launch your operations in Saudi with clarity and predictable
+            execution.
           </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
-          {PACKAGES.map((pkg, i) => (
-            <ServiceCard key={i} pkg={pkg} />
+          {OFFERINGS.map((o, i) => (
+            <OfferingCard key={i} o={o} />
           ))}
         </div>
       </div>
@@ -104,15 +101,15 @@ export default function Services() {
 
 /* ---------------- subcomponents ---------------- */
 
-const ICON_MAP: Record<Badge, LucideIcon> = {
-  Setup: Building2,
-  'Post‑Setup': ShieldCheck,
-  'Custom & PPS': SlidersHorizontal,
+const ICONS: Record<Badge, LucideIcon> = {
+  Launch: Building2,
+  Operate: ShieldCheck,
+  Scale: TrendingUp,
 };
 
-function ServiceCard({ pkg }: { pkg: Pkg }) {
-  const isDark = pkg.theme === 'dark';
-  const Icon = ICON_MAP[pkg.badge];
+function OfferingCard({ o }: { o: Offering }) {
+  const isDark = o.theme === 'dark';
+  const Icon = ICONS[o.badge];
 
   return (
     <div
@@ -134,7 +131,7 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
           ].join(' ')}
         >
           <Icon className="size-4" />
-          {pkg.badge}
+          {o.badge}
         </span>
       </div>
 
@@ -145,7 +142,7 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
           isDark ? 'text-white' : 'text-neutral-900',
         ].join(' ')}
       >
-        {pkg.title}
+        {o.title}
       </h3>
       <p
         className={[
@@ -153,12 +150,12 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
           isDark ? 'text-white/75' : 'text-neutral-600',
         ].join(' ')}
       >
-        {pkg.subtitle}
+        {o.subtitle}
       </p>
 
       {/* list grows to push footer down */}
       <ul className="mt-6 flex flex-1 flex-col gap-2">
-        {pkg.items.map((it, idx) => (
+        {o.items.map((it, idx) => (
           <li
             key={idx}
             className={[
@@ -177,11 +174,10 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
         ))}
       </ul>
 
-      {/* footer: single row, aligned across all cards */}
+      {/* footer: route to detail page */}
       <div className="mt-8 flex justify-start">
-        <a
-          href={pkg.brochure}
-          download
+        <Link
+          href={o.href}
           className={[
             'inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium',
             isDark
@@ -189,9 +185,8 @@ function ServiceCard({ pkg }: { pkg: Pkg }) {
               : 'bg-black text-white hover:bg-neutral-800',
           ].join(' ')}
         >
-          <FileDown className="size-4" />
-          Download Brochure (PDF)
-        </a>
+          Explore {o.badge}
+        </Link>
       </div>
     </div>
   );
