@@ -34,7 +34,7 @@ export default function About() {
           <Trait
             title="Forward‑moving"
             kicker="Momentum by design."
-            desc="Active partnership and clear next steps. We keep progress unblocked without over‑promising."
+            desc="Active partnership and clear next steps to expand. We keep progress unblocked without over‑promising."
           />
         </div>
       </div>

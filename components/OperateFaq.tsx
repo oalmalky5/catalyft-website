@@ -10,33 +10,48 @@ export default function OperateFaq() {
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
-      q: 'Do you act as our GRO/PRO or just coordinate?',
-      a: 'We can operate as your day-to-day GRO/PRO function or coordinate with your in-house team. Either way, we own the tracker, timelines, and follow-ups.',
+      q: 'What exactly do you handle every month?',
+      a: 'We handle the recurring work that keeps your Saudi operation running: renewals and compliance deadlines, payroll coordination, employment contracts and updates, visas/work permits/iqama, customer & vendor onboarding packs, and the letters or certificates buyers ask for. You get one tracker with owners, due dates, and status.',
     },
     {
       id: 'q2',
-      q: 'Can you run payroll end to end?',
-      a: 'We set up a clean workflow: contracts in Qiwa, WPS file prep/coordination, GOSI changes, and reconciliations. If you prefer a payroll provider, we integrate and manage the cadence.',
+      q: 'Do you track renewals and compliance dates so nothing expires?',
+      a: 'Yes. We load all renewal dates into a shared calendar, prepare the required documents, submit on time, and confirm completion. We flag anything that needs your sign-off ahead of time and keep proof on file.',
     },
     {
       id: 'q3',
-      q: 'Which portals do you manage?',
-      a: 'Commonly Qiwa, GOSI, Muqeem, ZATCA, MISA/Najiz—and others as needed. We keep access and renewals organized and on schedule.',
+      q: 'Who handles visas, work permits, and iqama for our team?',
+      a: 'We do. We gather requirements, prepare the packs, submit the requests, and track each stage through to issuance or renewal. Your role is to provide the personal documents we request and approve key steps—we run the process end to end.',
     },
     {
       id: 'q4',
-      q: 'What vendor registrations do you handle?',
-      a: 'Customer and marketplace onboarding where document packs are required. We gather evidence, submit, and track to approval.',
+      q: 'How do you run payroll and HR each month?',
+      a: 'We coordinate monthly payroll runs, prepare the needed proofs, and keep employment records clean and audit-ready. We also handle contract creation, amendments, joins/leavers, and job/compensation changes with the right approvals.',
     },
     {
       id: 'q5',
-      q: 'Can you secure sector approvals for us?',
-      a: 'We coordinate third-party or customer approvals tied to your activity. The decision rests with the issuing body—we make the path and pack clear.',
+      q: 'Will you onboard us with customers, marketplaces, and vendors?',
+      a: 'Yes. We assemble and submit the onboarding packs those platforms ask for (company docs, forms, certificates, IDs, etc.), follow up for approvals, and update you as soon as access is granted.',
     },
     {
       id: 'q6',
-      q: 'How do you price Operate?',
-      a: 'Light, Standard, and Full packages with clear inclusions. We’ll map needs on a short call and recommend the fit before we start.',
+      q: 'Do you prepare official letters and certificates when buyers ask?',
+      a: 'Yes. We prepare and submit the required letters, attestations, and certificates your customers request to release payments, register you as a supplier, or allow delivery. We keep templates ready so turnarounds are fast.',
+    },
+    {
+      id: 'q7',
+      q: 'What do you need from us to keep things moving?',
+      a: 'Two things: timely approvals and the documents only you can provide (e.g., passport scans or signed forms). We keep requests short and specific inside the tracker so your team spends minimal time.',
+    },
+    {
+      id: 'q8',
+      q: 'How do we see progress and who is accountable?',
+      a: 'You get a single live tracker with each task’s owner, due date, and status—plus short weekly updates. We assign named owners on our side so you always know who is driving what and when it will be done.',
+    },
+    {
+      id: 'q9',
+      q: 'Do you require technical “portal” knowledge from our team?',
+      a: 'No. We avoid jargon and handle the submissions ourselves. We guide you to grant the minimum secure access we need, and we document each step in plain English so anyone on your team can follow along.',
     },
   ];
 
@@ -48,7 +63,7 @@ export default function OperateFaq() {
             FAQ
           </p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            Operate questions we get a lot.
+            Operate Q&amp;A — clear and simple.
           </h2>
         </div>
 
@@ -68,7 +83,7 @@ export default function OperateFaq() {
         </button>
       </div>
 
-      {/* Collapsible wrapper with zero space when closed */}
+      {/* zero-space when closed */}
       <div className={`${openSection ? 'mt-8' : ''}`}>
         <div
           id="operate-faq-panel"
@@ -137,6 +152,7 @@ function FaqItem({
         </span>
       </button>
 
+      {/* smooth collapse, no leftover space when closed */}
       <div
         id={contentId}
         className={`grid transition-all duration-300 ${

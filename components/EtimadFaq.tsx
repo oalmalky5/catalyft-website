@@ -3,60 +3,50 @@
 import { useId, useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
-export default function LaunchFaq() {
+export default function EtimadFaq() {
   const [openSection, setOpenSection] = useState(false);
   const [openItem, setOpenItem] = useState<string | ''>('');
 
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
-      q: 'Can a foreign company set up in Saudi Arabia?',
-      a: 'Yes. Most foreign companies set up either a branch or a new Saudi entity. If foreign-owned, you typically need a MISA license first. We’ll help you choose the right route and handle the steps.',
+      q: 'What is Etimad?',
+      a: 'Etimad is the Saudi government e-procurement portal. Buyers publish tenders, and suppliers register, qualify, and submit bids. We get you set up and teach your team how to operate confidently.',
     },
     {
       id: 'q2',
-      q: 'What is a MISA license and who needs it?',
-      a: 'It’s a foreign investment license issued by the Ministry of Investment (MISA). If your company outside Saudi is the owner, you usually need this license before registering the Saudi CR. We prepare, submit, and track it end to end.',
+      q: 'Do you handle the account registration?',
+      a: 'Yes. We register your company, set roles and permissions, and hand over secure credentials. You keep ownership; we make sure it’s configured correctly.',
     },
     {
       id: 'q3',
-      q: 'How long does setup take and what are the main steps?',
-      a: 'Timing depends on your model and authority response times. The core flow is: prepare/attest documents → MISA license → draft Articles → issue CR → GM visa to iqama → bank account → government portal registrations. We keep tasks moving in parallel.',
+      q: 'How do you help us find the right tenders?',
+      a: 'We run live sessions on where to search, how to filter and save views, and a simple qualification method so you focus only on bids that fit your strengths and timing.',
     },
     {
       id: 'q4',
-      q: 'Do I need to travel to Saudi to finalize?',
-      a: 'The General Manager will need to be present in KSA for us to issue their Iqama (Saudi Residency). Some other stages may require in-person attendance or a local signatory visit—for example, bank account opening. We’ll flag exactly when presence is needed.',
+      q: 'What documents are typically needed for a compliant bid?',
+      a: 'We give you a reusable “readiness pack” list—company profile, authorizations, technical evidence, financials, and any sector-specific items—plus templates and examples so your team knows exactly what to prepare.',
     },
     {
       id: 'q5',
-      q: 'Do I need an office address to register?',
-      a: 'Yes, the compnay will need to be registered at a local KSA address in order to issue the CR. We fully handle that step for you.',
+      q: 'Do you review our proposals before submission?',
+      a: 'Yes. We review drafts for structure, compliance, and clarity, and we suggest concrete edits. We also teach best practices for technical and commercial responses.',
     },
     {
       id: 'q6',
-      q: 'What are my document attestation requirements?',
-      a: 'We provide the exact templates and pre-fill them correctly. Your team handles will handle the apostilling and the attestation of the documents we prepare for you',
+      q: 'Can you submit the bid for us?',
+      a: 'We guide and supervise the submission end-to-end and can perform the upload with your permission. Final responsibility and declarations remain with your company.',
     },
     {
       id: 'q7',
-      q: 'What is Saudization and when does it apply?',
-      a: 'Saudization sets minimum Saudi national employment ratios for certain activities and company sizes. Not all categories are the same. We’ll clarify your obligations and timelines during setup.',
+      q: 'What about deadlines and bid timelines?',
+      a: 'We set internal checkpoints for clarifications, documents, approvals, and final upload—so there’s no last-minute scramble. Your team sees owners and dates in one place.',
     },
     {
       id: 'q8',
-      q: 'What do government portal registrations cover?',
-      a: 'They enable hiring, payroll compliance, immigration processes, and tax filings. We register your company, request the right access, and hand over credentials securely.',
-    },
-    {
-      id: 'q9',
-      q: 'Roughly how much does setup cost?',
-      a: 'It varies based on the setup route. We provide clear a breakdown of the service and govermental costs associated with establishing your entity',
-    },
-    {
-      id: 'q10',
-      q: 'Are there Special Economic Zones (SEZs) we should consider?',
-      a: 'SEZs can offer targeted incentives for specific sectors. If relevant to your activity, we’ll walk you through eligibility and practical trade-offs versus a standard setup.',
+      q: 'Is everything in Arabic?',
+      a: 'Etimad communications and submissions are mainly in Arabic. We show you how to manage translations efficiently and where English is acceptable. We keep templates bilingual where helpful.',
     },
   ];
 
@@ -67,7 +57,9 @@ export default function LaunchFaq() {
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
             FAQ
           </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">Launch Q&A</h2>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight">
+            Etimad Q&amp;A
+          </h2>
         </div>
 
         <button
@@ -75,7 +67,7 @@ export default function LaunchFaq() {
           onClick={() => setOpenSection((v) => !v)}
           className="mt-4 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
           aria-expanded={openSection}
-          aria-controls="launch-faq-panel"
+          aria-controls="etimad-faq-panel"
         >
           {openSection ? (
             <Minus className="size-4" />
@@ -87,9 +79,9 @@ export default function LaunchFaq() {
       </div>
 
       {/* zero-space when closed */}
-      <div className={`${openSection ? 'mt-8' : ''}`}>
+      <div className={openSection ? 'mt-8' : ''}>
         <div
-          id="launch-faq-panel"
+          id="etimad-faq-panel"
           aria-hidden={!openSection}
           className={`grid overflow-hidden transition-all duration-300 ${
             openSection
@@ -155,7 +147,7 @@ function FaqItem({
         </span>
       </button>
 
-      {/* smooth collapse */}
+      {/* smooth collapse, no leftover space when closed */}
       <div
         id={contentId}
         className={`grid transition-all duration-300 ${

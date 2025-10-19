@@ -1,46 +1,45 @@
 import type { Metadata } from 'next';
 import {
-  ShieldCheck,
-  Building2,
+  FileText,
+  Target,
+  Search,
+  ListChecks,
+  Presentation,
+  FolderCheck,
   Users2,
-  BadgeCheck,
-  Package,
-  ClipboardList,
-  Briefcase,
-  FileCheck2,
   CheckCircle2,
   Mail,
+  Globe2,
 } from 'lucide-react';
 
-import OperateFaq from '../../../components/OperateFaq'; // or '@/components/OperateFaq' if using path aliases
-import ContactButton from '@/components/ContactButton'; // uses your ContactDialog under the hood
+import ContactButton from '@/components/ContactButton';
+import EtimadFaq from '@/components/EtimadFaq';
 
 export const metadata: Metadata = {
-  title:
-    'Operate in Saudi – Ongoing Compliance, HR & Payroll, Approvals | CataLyft',
+  title: 'Etimad Enablement — End-to-End Onboarding & Bid Support | CataLyft',
   description:
-    'Keep Saudi operations moving on a simple retainer: renewals, HR & payroll coordination, visas/iqama, customer/vendor registrations, and the certificates you need — with clear owners and timelines.',
+    'Full Etimad onboarding and hands-on enablement: account setup, working sessions on finding and qualifying tenders, compliant submissions, proposal best practices, timelines, and procurement know-how.',
 };
 
-export default function OperatePage() {
+export default function EtimadPage() {
   return (
     <main className="bg-white text-neutral-900">
       {/* HERO */}
       <section className="bg-black text-white">
         <div className="mx-auto max-w-6xl px-6 py-24 text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold tracking-widest">
-            <ShieldCheck className="size-3.5" />
-            Operate Track
+            <Globe2 className="size-3.5" />
+            Etimad Service
           </span>
 
           <h1 className="mt-5 text-4xl font-extrabold tracking-tight md:text-6xl">
-            Your Saudi operations, uninterrupted.
+            Get your team winning-ready on Etimad.
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-white/80">
-            We run the critical, recurring work behind the scenes — renewals,
-            people ops, payments & certificates, and the day-to-day submissions
-            — so your team can focus on customers and growth.
+            We don’t stop at registration. We teach your team how to find the
+            right tenders, qualify fast, prepare compliant bids, and submit on
+            time—with clear checklists and working sessions that stick.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -49,7 +48,7 @@ export default function OperatePage() {
             </ContactButton>
 
             <a
-              href="mailto:info@catalyft.sa?subject=Operate%20Track%20Inquiry"
+              href="mailto:info@catalyft.sa?subject=Etimad%20Enablement%20Inquiry"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
             >
               <Mail className="size-4" />
@@ -59,133 +58,127 @@ export default function OperatePage() {
 
           <ul className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-2 text-sm text-white/70 sm:grid-cols-3">
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Ongoing compliance (renewals &
-              certificates)
+              <CheckCircle2 className="size-4" /> Full onboarding & access
             </li>
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> HR & payroll coordination
+              <CheckCircle2 className="size-4" /> Hands-on bid workflows
             </li>
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Approvals & registrations that
-              unblock delivery
+              <CheckCircle2 className="size-4" /> Proposal reviews & best
+              practices
             </li>
           </ul>
         </div>
       </section>
 
-      {/* WHAT WE RUN (PLAIN LANGUAGE) */}
+      {/* WHAT WE DO */}
       <section id="offer" className="mx-auto max-w-6xl px-6 py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          What we run
+          What we do
         </p>
         <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          The essentials that keep you compliant and moving.
+          From zero to confident on Etimad.
         </h2>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Feature
-            icon={<Building2 className="size-5" />}
-            title="Company renewals & certificates"
-            desc="We track dates, prep the right documents, and coordinate renewals and proof-of-compliance certificates so nothing expires or blocks delivery."
+            icon={<FolderCheck className="size-5" />}
+            title="Full onboarding & account setup"
+            desc="We register your company, set the right roles and permissions, and hand over secure credentials with a simple runbook."
           />
           <Feature
-            icon={<Users2 className="size-5" />}
-            title="People ops: visas, iqama & changes"
-            desc="From issuing/renewing work permits and iqama to role or data updates, we guide your team and handle submissions end-to-end."
+            icon={<Search className="size-5" />}
+            title="Finding & qualifying tenders"
+            desc="Working sessions on where to look, how to filter, what to ignore, and quick go/no-go rules so your team doesn’t waste time."
           />
           <Feature
-            icon={<BadgeCheck className="size-5" />}
-            title="HR & payroll coordination"
-            desc="Monthly payroll runs, employment contracts, and record updates — coordinated cleanly and ready for audit when you need it."
+            icon={<ListChecks className="size-5" />}
+            title="Compliance & documentation"
+            desc="Exactly what supporting documents are usually required, how to prepare them, and the evidence pack reviewers expect."
           />
           <Feature
-            icon={<Package className="size-5" />}
-            title="Customer & vendor onboarding"
-            desc="We assemble and submit the packs your priority customers, platforms, and marketplaces ask for — and track to approval."
+            icon={<Presentation className="size-5" />}
+            title="Proposal structure & best practices"
+            desc="How to shape technical and commercial responses, highlight differentiators, and avoid common rejection triggers."
           />
           <Feature
-            icon={<FileCheck2 className="size-5" />}
-            title="Approvals that unlock operations"
-            desc="Sector or third-party approvals, letters, and attestations handled with clear steps, owners, and timelines."
+            icon={<FileText className="size-5" />}
+            title="Submission workflow & timelines"
+            desc="We walk your team through the submission steps, timelines, and internal checkpoints so nothing slips the deadline."
           />
           <Feature
-            icon={<ClipboardList className="size-5" />}
-            title="Simple operations reporting"
-            desc="One tracker to see owners, tasks, due dates, and renewals. No guesswork — just progress."
+            icon={<Target className="size-5" />}
+            title="Reviews & feedback loops"
+            desc="We review draft submissions, give actionable edits, and set up a repeatable internal process for the next tenders."
           />
         </div>
 
-        {/* RETAINER NOTE */}
         <div className="mt-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
           <p className="text-sm text-neutral-700">
-            <span className="font-medium">How it’s delivered:</span> Operate is
-            a simple retainer. We agree the scope (light, standard, or full) and
-            run it every month with the same quality bar — adding one-off help
-            when you need it.
+            Decisions and awards are made by the issuing bodies. Our job is to
+            make your bid compliant, on-time, and stronger—every single time.
           </p>
         </div>
       </section>
 
-      {/* HOW IT WORKS MONTH-TO-MONTH */}
+      {/* HOW IT WORKS */}
       <section id="process" className="mx-auto max-w-6xl px-6 py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
           How it works
         </p>
         <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Month-to-month rhythm.
+          A clear path to bidding confidently.
         </h2>
 
         <ol className="relative mt-10 space-y-8 border-l border-neutral-200 pl-6">
           <Step
             step="Step 01"
-            title="Kickoff & access"
-            desc="We set up your tracker, align priorities, and securely collect access so work can start immediately."
+            title="Access & roles"
+            desc="We create your Etimad account, set company roles and user permissions, and confirm secure access."
           />
           <Step
             step="Step 02"
-            title="Calendar & compliance guardrails"
-            desc="We load renewals, cutoffs, and deliverables into a single calendar so you never miss a date."
+            title="Readiness pack"
+            desc="We assemble the core documentation (company info, authorizations, certificates) you’ll reuse across bids."
           />
           <Step
             step="Step 03"
-            title="People ops & approvals"
-            desc="We run monthly payroll coordination, handle visas/iqama, and submit the approvals/registrations that unblock delivery."
+            title="Working sessions"
+            desc="Hands-on sessions: finding tenders, quick qualification, proposal structure, and submission flow."
           />
           <Step
             step="Step 04"
-            title="Status & next steps"
-            desc="Short, useful updates — what’s done, what’s pending, what we need from you — then we rinse and repeat."
+            title="Live submissions"
+            desc="We guide your first submissions end-to-end, review drafts, and set the internal cadence for the next ones."
           />
         </ol>
       </section>
 
-      {/* EXAMPLES (PULLED FROM REAL TASKS, PLAIN LANGUAGE) */}
-      <section className="mx-auto max-w-6xl px-6 pb-8">
+      {/* OUTCOMES */}
+      <section id="outcomes" className="mx-auto max-w-6xl px-6 pb-8">
         <div className="rounded-2xl border border-neutral-200 p-6">
-          <h3 className="text-lg font-semibold">Examples of what we handle</h3>
-          <ul className="mt-3 grid list-disc gap-2 pl-5 text-sm text-neutral-700 md:grid-cols-2">
-            <li>Annual license and company registration renewals</li>
-            <li>Issuing and renewing work permits & iqama for team members</li>
-            <li>Monthly payroll coordination and proof (WPS/compliance)</li>
-            <li>Customer & marketplace onboarding packs and submissions</li>
-            <li>Employment contract setup and changes</li>
-            <li>Letters, attestations, and certificates needed for delivery</li>
-          </ul>
+          <h3 className="text-lg font-semibold">What you leave with</h3>
+          <p className="mt-2 text-sm leading-relaxed text-neutral-700">
+            A fully set up Etimad account, a trained team that knows where to
+            look and how to qualify, reusable document packs and templates, a
+            proposal playbook, and a submission rhythm your team can repeat
+            without hand-holding.
+          </p>
         </div>
       </section>
 
-      {/* FAQ (collapsible client component) */}
-      <OperateFaq />
+      {/* FAQ (collapsible, client component) */}
+      <EtimadFaq />
 
-      {/* FINAL CTA (anchor for the main site nav) */}
+      {/* FINAL CTA (anchor for site nav on services pages) */}
       <section id="contact" className="scroll-mt-24 bg-black text-white">
         <div className="mx-auto max-w-6xl px-6 py-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Keep your Saudi operations running smoothly.
+            Ready to compete on Etimad?
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/80">
-            Book a quick consult and we’ll recommend the right retainer level
-            for your stage.
+            Book a quick consult. We’ll check readiness, set up your access, and
+            start the working sessions.
           </p>
 
           <div className="mt-6 flex items-center justify-center gap-3">
@@ -194,7 +187,7 @@ export default function OperatePage() {
             </ContactButton>
 
             <a
-              href="mailto:info@catalyft.sa?subject=Operate%20Track%20Inquiry"
+              href="mailto:info@catalyft.sa?subject=Etimad%20Enablement%20Inquiry"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
             >
               <Mail className="size-4" />

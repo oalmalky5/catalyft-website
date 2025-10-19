@@ -6,21 +6,21 @@ import {
   Puzzle,
   Wrench,
   ListChecks,
-  Search,
-  FileText,
-  Target,
-  Handshake,
-  CheckCircle2,
+  ClipboardList,
+  Users2,
+  FileCheck2,
+  Briefcase,
+  Rocket,
   Mail,
-  ArrowRight,
 } from 'lucide-react';
-import ScaleFaq from '../../../components/ScaleFaq'; // or '@/components/ScaleFaq' if using aliases
+
 import ContactButton from '@/components/ContactButton';
+import ScaleFaq from '@/components/ScaleFaq'; // create/update as below
 
 export const metadata: Metadata = {
-  title: 'Scale in Saudi – Custom Packages & Pay-Per-Service | CataLyft',
+  title: 'Scale in Saudi – Custom Packages or Pay-Per-Service | CataLyft',
   description:
-    'Exactly what you need to scale in Saudi: bundle a custom package or use pay-per-service. Deep Etimad enablement from account creation to hands-on bid workflows.',
+    'Exactly what you need to grow in Saudi: choose a custom package or pay per service. We handle certifications and approvals, customer/vendor onboarding, hiring support, and the operating rhythm that keeps growth on track.',
 };
 
 export default function ScalePage() {
@@ -33,33 +33,40 @@ export default function ScalePage() {
             <TrendingUp className="size-3.5" />
             Scale Track
           </span>
+
           <h1 className="mt-5 text-4xl font-extrabold tracking-tight md:text-6xl">
             Scale in Saudi, your way.
           </h1>
+
           <p className="mx-auto mt-4 max-w-2xl text-white/80">
-            Choose a custom package built around your goals—or pay per service.
-            We plug into your team and unlock the next set of wins in KSA.
+            Choose a custom package built around your priorities—or pick
+            specific services as you need them. We plug into your team and drive
+            the next set of wins.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <ContactButton className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
+              Book a consultation
+            </ContactButton>
+
             <a
-              href="#offer"
+              href="mailto:info@catalyft.sa?subject=Scale%20Track%20Inquiry"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
             >
-              See options
-              <ArrowRight className="size-4" />
+              <Mail className="size-4" />
+              info@catalyft.sa
             </a>
           </div>
 
           <ul className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-2 text-sm text-white/70 sm:grid-cols-3">
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Custom bundles
+              <Rocket className="size-4" /> Custom bundles
             </li>
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Pay-per-service
+              <Puzzle className="size-4" /> Pay-per-service
             </li>
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Etimad enablement
+              <ListChecks className="size-4" /> Outcome-driven delivery
             </li>
           </ul>
         </div>
@@ -78,85 +85,59 @@ export default function ScalePage() {
           <Feature
             icon={<Layers className="size-5" />}
             title="Custom package"
-            desc="We design a focused scope after a short discovery and plug in alongside your team with clear owners and timelines."
+            desc="We shape a focused scope after a short discovery, then plug in with named owners, timelines, and visible progress."
           />
           <Feature
             icon={<Puzzle className="size-5" />}
             title="Pay-per-service"
-            desc="Pick specific services as you need them—fast turnarounds and no long commitments."
+            desc="Pick specific actions as you need them — fast turnarounds, no long commitment."
           />
           <Feature
-            icon={<Wrench className="size-5" />}
-            title="Hands-on enablement"
-            desc="Working sessions, templates, and trackers so your team can run the process the right way, every time."
+            icon={<FileCheck2 className="size-5" />}
+            title="Certifications & approvals"
+            desc="We prepare the packs and submit the approvals you need to deliver for customers or sectors — tracked to decision."
           />
           <Feature
-            icon={<ListChecks className="size-5" />}
-            title="Approvals & certifications"
-            desc="Coordinate the requirements and submissions that unlock delivery for customers and sectors."
+            icon={<Briefcase className="size-5" />}
+            title="Customer & vendor onboarding"
+            desc="We assemble, submit, and follow up on onboarding packs for key accounts and platforms — so revenue isn’t waiting on paperwork."
           />
           <Feature
-            icon={<Search className="size-5" />}
-            title="Prospecting support"
-            desc="Target lists and intros where there’s fit, so your pipeline starts with warm context."
+            icon={<Users2 className="size-5" />}
+            title="Hiring support & HR ramp"
+            desc="We set up clean employment docs, help you onboard the first hires, and get the day-to-day people ops flowing."
           />
           <Feature
-            icon={<Handshake className="size-5" />}
-            title="Customer onboarding packs"
-            desc="We assemble and submit the document packs platforms and key accounts expect."
+            icon={<ClipboardList className="size-5" />}
+            title="Operating rhythm"
+            desc="A simple tracker and regular reviews: what’s done, what’s next, and what we need from you — in plain English."
           />
         </div>
 
         <div className="mt-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
           <p className="text-sm text-neutral-700">
-            Not sure which way to go? Talk to us and we’ll map a bundle or a
-            simple per-service plan that fits your stage and targets.
+            Start small or go deep. We can run a 30–90 day sprint for quick
+            wins, or a longer package when you want steady hands on the wheel.
           </p>
         </div>
       </section>
 
-      {/* ETIMAD ENABLEMENT */}
-      <section id="etimad" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          Etimad
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          End-to-end Etimad onboarding and working sessions.
-        </h2>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-neutral-700">
-          We provide a holistic Etimad service—from account creation to hands-on
-          enablement. We’ll set up the company, walk your team through where to
-          find relevant bids, how to read requirements, how submissions work,
-          and what to expect in procurement and selection. Decisions sit with
-          the government and buyers, so we don’t promise awards; we do give you
-          a clear, compliant path and stronger applications.
-        </p>
-
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          <Feature
-            icon={<FileText className="size-5" />}
-            title="Account creation & readiness"
-            desc="Company setup, access, and validation so you can start operating on Etimad without friction."
-          />
-          <Feature
-            icon={<Search className="size-5" />}
-            title="Finding & qualifying bids"
-            desc="Working sessions on where to look, filters that matter, and quick ways to qualify or pass."
-          />
-          <Feature
-            icon={<Target className="size-5" />}
-            title="Winning-quality submissions"
-            desc="Checklists, evidence mapping, and application-pack preparation aligned to buyer expectations."
-          />
-        </div>
-
-        <div className="mt-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 text-xs text-neutral-600">
-          Note: We guide, prepare, and support submissions. Awards and timelines
-          are determined by the issuing bodies.
+      {/* EXAMPLES (PRACTICAL, JARGON-FREE) */}
+      <section className="mx-auto max-w-6xl px-6 pb-8">
+        <div className="rounded-2xl border border-neutral-200 p-6">
+          <h3 className="text-lg font-semibold">Examples of what we handle</h3>
+          <ul className="mt-3 grid list-disc gap-2 pl-5 text-sm text-neutral-700 md:grid-cols-2">
+            <li>Customer or sector approvals needed to deliver</li>
+            <li>Onboarding to key accounts and marketplaces</li>
+            <li>Employment offers, contracts, and first-hire onboarding</li>
+            <li>Supplier paperwork and simple vendor enablement</li>
+            <li>Proposal support and local documentation</li>
+            <li>Light process setup so work flows without chasing</li>
+          </ul>
         </div>
       </section>
 
-      {/* FAQ (collapsible, client component) */}
+      {/* FAQ (collapsible client component) */}
       <ScaleFaq />
 
       {/* FINAL CTA — modal + email fallback */}
@@ -168,12 +149,11 @@ export default function ScalePage() {
 
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <ContactButton className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
-              <Mail className="size-4" />
               Book a consultation
             </ContactButton>
 
             <a
-              href="mailto:info@catalyft.sa?subject=Catalyft%20Service%20Inquiry"
+              href="mailto:info@catalyft.sa?subject=Scale%20Track%20Inquiry"
               className="text-sm text-white/70 underline underline-offset-4 hover:text-white"
             >
               or email us: info@catalyft.sa
@@ -200,5 +180,18 @@ function Feature(props: {
       <h3 className="text-lg font-semibold">{props.title}</h3>
       <p className="mt-2 text-sm text-neutral-600">{props.desc}</p>
     </div>
+  );
+}
+
+function Step(props: { step: string; title: string; desc: string }) {
+  return (
+    <li className="ml-2">
+      <div className="absolute -left-[9px] mt-1.5 size-4 rounded-full border border-neutral-300 bg-white" />
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+        {props.step}
+      </p>
+      <h3 className="mt-1 text-lg font-semibold">{props.title}</h3>
+      <p className="mt-1 text-sm text-neutral-600">{props.desc}</p>
+    </li>
   );
 }

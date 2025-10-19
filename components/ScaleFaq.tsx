@@ -10,33 +10,49 @@ export default function ScaleFaq() {
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
-      q: 'How do custom packages differ from pay-per-service?',
-      a: 'Custom packages bundle a scoped set of services with clear timelines and owners. Pay-per-service lets you request specific actions on demand. We’ll recommend the right fit in a short discovery.',
+      q: 'What does “Scale” actually cover?',
+      a: 'We handle the work that moves growth forward: certifications and approvals your customers require, onboarding to key accounts and platforms, hiring support for your first roles, proposal/local docs, and a simple operating rhythm so actions keep moving.',
     },
     {
       id: 'q2',
-      q: 'Can you run Etimad for us end to end?',
-      a: 'We set up the account, guide readiness, and support submissions with working sessions. Awards and approvals are made by the issuing bodies—we make your path clear and compliant.',
+      q: 'Custom package or pay-per-service — how do I choose?',
+      a: 'If you have several priorities and want one team to drive them, pick a custom package. If you only need one or two actions now, choose pay-per-service. We’ll recommend the right fit after a short call.',
     },
     {
       id: 'q3',
-      q: 'Do you provide prospect lists or introductions?',
-      a: 'Yes, where there is clear fit. We can generate targeted lists and make warm intros when valuable on both sides.',
+      q: 'How fast can you start and what happens first?',
+      a: 'We can usually start within days. First, we confirm priorities and access, then we ship the quickest unlocks while setting up a tracker with owners and dates you can see anytime.',
     },
     {
       id: 'q4',
-      q: 'What if we only need one certification or approval?',
-      a: 'That’s a good pay-per-service use case. We coordinate requirements, prepare the pack, and track to decision.',
+      q: 'Do you handle customer or sector approvals end to end?',
+      a: 'Yes. We prepare the documents, submit the applications, and track to decision. We keep you posted on anything that needs your sign-off and share confirmations once approved.',
     },
     {
       id: 'q5',
-      q: 'How fast can we start?',
-      a: 'Usually within days of discovery. We align on scope, confirm access, and begin execution on the agreed track.',
+      q: 'Can you onboard us to marketplaces or strategic customers?',
+      a: 'Yes. We assemble and file the onboarding packs those platforms ask for, follow up for approvals, and confirm access so sales isn’t blocked by paperwork.',
     },
     {
       id: 'q6',
-      q: 'How do you price Scale?',
-      a: 'Transparent fees per package or per service with clear inclusions. If scope changes, we agree it in advance.',
+      q: 'Do you help with hiring and first-time HR setup?',
+      a: 'Yes. We prepare clean offer and employment documents, guide first-hire onboarding, and put a light people-ops rhythm in place so changes are handled correctly.',
+    },
+    {
+      id: 'q7',
+      q: 'How do we keep track of progress?',
+      a: 'You get a single tracker with named owners, due dates, and status updates. We also send short weekly notes: what’s done, what’s next, and any inputs needed from you.',
+    },
+
+    {
+      id: 'q9',
+      q: 'Do you require us to understand local portals or jargon?',
+      a: 'No. We avoid jargon and handle submissions directly. When we need your approval or a document, we ask in plain English and keep it minimal.',
+    },
+    {
+      id: 'q10',
+      q: 'What do you need from us to move quickly?',
+      a: 'A primary point of contact, timely approvals, and the documents only you can provide (e.g., company IDs, signed forms). We keep requests short so your team can stay focused on customers.',
     },
   ];
 
@@ -48,7 +64,7 @@ export default function ScaleFaq() {
             FAQ
           </p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            Scale questions we get a lot.
+            Scale Q&amp;A
           </h2>
         </div>
 
@@ -137,7 +153,7 @@ function FaqItem({
         </span>
       </button>
 
-      {/* smooth collapse */}
+      {/* smooth collapse, no leftover space when closed */}
       <div
         id={contentId}
         className={`grid transition-all duration-300 ${

@@ -2,7 +2,14 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Rocket, ShieldCheck, TrendingUp } from 'lucide-react';
+import {
+  ChevronDown,
+  Rocket,
+  ShieldCheck,
+  TrendingUp,
+  Globe2,
+  FileText,
+} from 'lucide-react';
 
 type Variant = 'light' | 'dark'; // light = white button (for dark hero), dark = outline (for light sections)
 
@@ -110,6 +117,16 @@ export default function ServicesMenuButton({
           href="/services/scale"
           icon={<TrendingUp className="size-4" />}
           label="Scale"
+        />
+        <MenuItem
+          href="/services/rhq"
+          icon={<Globe2 className="size-4" />}
+          label="RHQ"
+        />
+        <MenuItem
+          href="/services/etimad"
+          icon={<FileText className="size-4" />}
+          label="Etimad"
         />
       </div>
     </div>

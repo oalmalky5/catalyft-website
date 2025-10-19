@@ -18,13 +18,13 @@ import {
   BookOpen,
   Calendar,
 } from 'lucide-react';
-import LaunchFaq from '../../../components/LaunchFaq'; // or '@/components/LaunchFaq' if using aliases
 import ContactButton from '@/components/ContactButton';
+import LaunchFaq from '@/components/LaunchFaq';
 
 export const metadata: Metadata = {
   title: 'Launch in Saudi – Market Entry & Setup | CataLyft',
   description:
-    'Engineered market entry for Saudi Arabia. Entity or branch setup, approvals, banking coordination, and day-one readiness delivered on a predictable timeline.',
+    'Straightforward market entry for Saudi Arabia. We guide attestations, secure the MISA license, issue your CR & Articles, onboard your General Manager, open a bank account, and register the right government portals.',
 };
 
 export default function LaunchPage() {
@@ -41,9 +41,8 @@ export default function LaunchPage() {
             Launch in Saudi, engineered to work.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-white/80">
-            We structure your market entry with clear decisions, predictable
-            timelines, and day-one operational readiness so your team can focus
-            on customers, not paperwork.
+            A simple, guided path to set up your Saudi presence—so your team can
+            focus on customers, not process.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -58,10 +57,10 @@ export default function LaunchPage() {
 
           <ul className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-2 text-sm text-white/70 sm:grid-cols-3">
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Entity or branch setup
+              <CheckCircle2 className="size-4" /> Clear steps, start to finish
             </li>
             <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Predictable timelines
+              <CheckCircle2 className="size-4" /> One team, one tracker
             </li>
             <li className="flex items-center justify-center gap-2">
               <CheckCircle2 className="size-4" /> Day-one readiness
@@ -83,28 +82,18 @@ export default function LaunchPage() {
           <WhoCard
             icon={<Landmark className="size-5" />}
             title="Foreign companies opening in KSA"
-            desc="Branches or new entities, set up with the right approvals and structure from day one."
+            desc="Branch or new entity—set up correctly from day one."
           />
           <WhoCard
             icon={<Handshake className="size-5" />}
             title="Saudi partners & founder-led teams"
-            desc="Saudi-owned teams or co-owned entities that want a compliant, scalable foundation fast."
+            desc="Co-owned or Saudi-owned teams that want a compliant, scalable foundation fast."
           />
           <WhoCard
             icon={<ShieldCheck className="size-5" />}
-            title="Ops-minded leaders"
-            desc="You want clear owners, tasks, and timing in one place so work keeps moving."
+            title="Operators who want clarity"
+            desc="You want plain language, clear owners, and visible next steps."
           />
-        </div>
-
-        <div className="mt-6 text-sm text-neutral-500">
-          <p>
-            <span className="font-medium">Note on terminology:</span> “Joint
-            venture” usually means a new Saudi entity co-owned by a foreign
-            company and a local partner. If that term feels unfamiliar to your
-            audience, “Saudi partners & founder-led teams” is simpler and
-            clearer.
-          </p>
         </div>
       </section>
 
@@ -114,44 +103,44 @@ export default function LaunchPage() {
           What’s included
         </p>
         <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Everything you need to stand up in Saudi with no guesswork.
+          Everything you need to stand up in Saudi—without the guesswork.
         </h2>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Feature
             icon={<Stamp className="size-5" />}
-            title="Attestations guidance"
-            desc="We guide your team on required document attestations in your home country and provide authority-ready templates."
+            title="Document attestations (guidance)"
+            desc="We give you the exact templates, pre-fill them correctly, and show you what to attest in your home country. Your team completes the local attestation step."
           />
           <Feature
             icon={<ShieldCheck className="size-5" />}
-            title="MISA license (guidance + execution)"
-            desc="We prepare, submit, and track your MISA application and tell you exactly where founder input is needed."
+            title="MISA license (foreign investment)"
+            desc="We submit all the required attested documents to the Ministry of investment and issue your MISA license. We deal with all and any governmental blockers"
           />
           <Feature
             icon={<FileBadge className="size-5" />}
             title="CR & Articles of Association"
-            desc="We coordinate Commercial Registration and Articles drafting with the right model for your case."
+            desc="We draft your Articles with the activities you choose and issue the Commercial Registration (CR) under the right legal form."
           />
           <Feature
             icon={<IdCard className="size-5" />}
-            title="GM onboarding (visa → iqama)"
-            desc="From visa application to iqama issuance, we map steps, track progress, and keep documents moving."
+            title="General Manager onboarding"
+            desc="End-to-end support from GM visa issuance to iqama, plus registering the GM in Saudi systems so they can act on behalf of the company."
           />
           <Feature
             icon={<CreditCard className="size-5" />}
-            title="Bank account support"
-            desc="We guide bank selection, prepare required packs, and coordinate meetings until the account is opened."
+            title="Corporate bank account support"
+            desc="We recommend suitable banks, prepare the application pack, coordinate meetings, and assist the GM through account opening."
           />
           <Feature
             icon={<ShieldCheck className="size-5" />}
-            title="Government portals onboarding"
-            desc="Qiwa, GOSI, Muqeem, ZATCA, MISA/Najiz, and optional Etimad. We create accounts, request access, and hand over credentials securely."
+            title="Government portal registrations"
+            desc="We register your company on the key compliance portals, create the right access, and hand over credentials securely."
           />
         </div>
       </section>
 
-      {/* STARTUPS FOCUS */}
+      {/* STARTUPS FOCUS (unchanged, kept concise) */}
       <section id="startups" className="mx-auto max-w-6xl px-6 py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
           Startups
@@ -160,54 +149,50 @@ export default function LaunchPage() {
           Startup enablement: incentives, programs, and a cost-aware path.
         </h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-neutral-700">
-          We work closely with global startups that want to enter Saudi and keep
-          burn under control. We map eligibility for relevant programs, explain
-          how they work, and prepare the right application packs. Where
-          appropriate, we make introductions to initiatives and partners that
-          can reduce setup friction or cost. Program decisions are made by the
-          issuing bodies, so we never promise awards, but we do give you the
-          clearest path to a strong application.
+          We work with global startups that want to enter Saudi while
+          controlling burn. We map eligibility for relevant programs, explain
+          how they work, and prepare strong application packs. Where helpful, we
+          make introductions that can reduce friction or cost. Decisions are
+          made by issuing bodies—we never promise awards, but we give you the
+          clearest path to a solid application.
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <StartupsCard
             icon={<Sparkles className="size-5" />}
             title="Eligibility map"
-            desc="We assess your model, stage, and footprint against available grants, incentives, and support programs."
+            desc="Which grants, incentives, and programs apply to your stage and model."
           />
           <StartupsCard
             icon={<BookOpen className="size-5" />}
             title="Program briefings"
-            desc="Plain-English summaries of what each program offers, who qualifies, evidence needed, and typical timelines."
+            desc="Plain-English outlines, evidence needed, and typical timelines."
           />
           <StartupsCard
             icon={<CircleDollarSign className="size-5" />}
             title="Application packs"
-            desc="We help assemble the documents, narratives, and forms programs expect, tailored to your case."
+            desc="The documents and narratives programs expect—tailored to your case."
           />
           <StartupsCard
             icon={<Handshake className="size-5" />}
-            title="Introductions where appropriate"
-            desc="Warm intros to relevant initiatives and partners when there is clear fit and value on both sides."
+            title="Introductions where useful"
+            desc="Warm intros when there’s clear fit and value on both sides."
           />
           <StartupsCard
             icon={<Globe className="size-5" />}
-            title="Market-entry runway plan"
-            desc="Cost-aware sequencing of company setup, first hires, vendors, and go-to-market milestones."
+            title="Runway plan"
+            desc="Cost-aware sequencing of setup, first hires, vendors, and GTM."
           />
           <StartupsCard
             icon={<Calendar className="size-5" />}
             title="Program calendar"
-            desc="A simple tracker for application windows, deliverables, and decision dates so nothing slips."
+            desc="Keep application windows and decisions on your radar."
           />
         </div>
 
         <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-4 text-xs text-neutral-600">
-          <p>
-            Note: we provide guidance, preparation, and introductions. Awards,
-            discounts, and approvals are granted at the discretion of the
-            issuing authorities and partners.
-          </p>
+          We provide guidance, preparation, and introductions. Awards and
+          discounts are granted at the discretion of authorities and partners.
         </div>
       </section>
 
@@ -223,22 +208,22 @@ export default function LaunchPage() {
         <ol className="relative mt-10 space-y-8 border-l border-neutral-200 pl-6">
           <Step
             step="Step 01"
-            title="Receive attested parent company documents"
-            desc="We guide what to attest and where, making sure all documents meet MISA and MoJ requirements."
+            title="Gather & attest your documents"
+            desc="We confirm exactly what to prepare and pre-fill the right templates. Your team completes attestation in the home country."
           />
           <Step
             step="Step 02"
-            title="Filings and approvals"
-            desc="We coordinate MISA, CR, and Articles filings, tracking every authority touchpoint along the way."
+            title="Licenses & registrations"
+            desc="We secure the Ministry of Investment (MISA) license, draft the Articles of Association, and issue the Commercial Registration (CR)."
           />
           <Step
             step="Step 03"
-            title="Banking and portals onboarding"
-            desc="We help open your corporate bank account and onboard to Qiwa, GOSI, Muqeem, ZATCA, and others."
+            title="Operational enablement"
+            desc="We onboard your General Manager (visa → iqama), assist with corporate bank account opening, and register your company on the required government portals."
           />
           <Step
             step="Step 04"
-            title="Day-one readiness and handover"
+            title="Day-one readiness & handover"
             desc="Access, credentials, and a simple runbook so your team can operate with confidence."
           />
         </ol>
@@ -250,20 +235,30 @@ export default function LaunchPage() {
           Timeline
         </p>
         <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Get your company onboarded in 2 months.
+          Fastest path to go-live in KSA.
         </h2>
 
-        <div className="mt-8 max-w-2xl rounded-2xl border border-neutral-200 p-6">
-          <p className="text-sm leading-relaxed text-neutral-700">
-            Most launches complete within 6–8 weeks from kickoff, depending on
-            your company model and authority response times. We manage the
-            process end to end, keep you informed, and make sure every step
-            moves on schedule.
+        <div className="mt-8 max-w-3xl rounded-2xl border border-neutral-200 p-6">
+          <ul className="list-disc pl-5 text-sm leading-relaxed text-neutral-700">
+            <li>
+              We map the critical path on day one—no vague steps, no surprises.
+            </li>
+            <li>
+              Authority timing varies; our job is to keep everything moving in
+              parallel.
+            </li>
+            <li>
+              You see owners, blockers, and next actions in a single tracker.
+            </li>
+          </ul>
+          <p className="mt-4 text-sm text-neutral-700">
+            The result: the quickest compliant route from “decision made” to
+            “operating in Saudi,” tailored to your model.
           </p>
         </div>
       </section>
 
-      {/* FAQ (collapsible, client component) */}
+      {/* FAQ (collapsible, tailored to first-time Saudi expansion) */}
       <LaunchFaq />
 
       {/* FINAL CTA — modal + email fallback */}
@@ -273,8 +268,8 @@ export default function LaunchPage() {
             Ready to launch with clarity?
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/80">
-            Send us a note. Most teams start with a 20-minute discovery so we
-            can map your path and timeline.
+            Start with a quick discovery. We’ll map your path and give you a
+            clear plan.
           </p>
 
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
