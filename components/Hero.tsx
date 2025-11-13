@@ -64,10 +64,10 @@ export default function Hero() {
 
       {/* Hero tagline */}
       <motion.h2
-        className="mt-4 text-4xl font-extrabold tracking-tight md:text-6xl"
+        className="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl"
         variants={item}
       >
-        Lift, Align, Launch.
+        Launch, Operate, Scale.
       </motion.h2>
 
       {/* Subtitle */}
