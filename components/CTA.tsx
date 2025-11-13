@@ -41,7 +41,7 @@ export default function CTA() {
             id="cta-title"
             className="mt-3 text-3xl font-bold tracking-tight md:text-4xl"
           >
-            Let’s Lift, Align, and Launch Your Venture.
+            Ready to Launch Your Venture.
           </h2>
         </Item>
 
