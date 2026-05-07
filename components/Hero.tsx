@@ -30,7 +30,7 @@ export default function Hero() {
           <p
             className="text-xs font-semibold uppercase tracking-[0.22em] text-white/65"
           >
-            CATALYFT | SAUDI MARKET ENTRY PARTNER
+            CATALYFT | SAUDI MARKET ENTRY &amp; OPERATIONS PARTNER
           </p>
 
           <h1
