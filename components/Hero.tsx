@@ -2,6 +2,9 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import Image from 'next/image';
+import { Calendar, CheckCircle2 } from 'lucide-react';
+import ContactButton from './ContactButton';
 import ServicesMenuButton from './ServicesMenuButton';
 
 export default function Hero() {
@@ -36,12 +39,22 @@ export default function Hero() {
   return (
     <motion.section
       id="hero"
-      className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center bg-black text-center text-white overflow-hidden"
+      className="relative overflow-hidden bg-black text-white"
       initial="hidden"
       animate="show"
       variants={container}
     >
-      {/* Subtle background glow that fades in */}
+      <Image
+        src="/catalyft-saudi-market-entry.png"
+        alt="Executives planning Saudi market entry in a Riyadh office"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover opacity-60"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/72 to-black/24" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/25" />
+
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -51,50 +64,74 @@ export default function Hero() {
           transition: { duration: 0.8, ease: easing, delay: 0.1 },
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_10%,rgba(255,255,255,0.08),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(55%_40%_at_20%_15%,rgba(255,255,255,0.14),transparent_64%)]" />
       </motion.div>
 
-      {/* Brand name (EN | AR) */}
-      <motion.h1
-        className="text-2xl font-bold tracking-wide md:text-3xl text-white/90"
-        variants={item}
-      >
-        CataLyft <span className="mx-2">|</span> كاتاليفت
-      </motion.h1>
+      <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl items-center gap-10 px-6 py-24 lg:grid-cols-[1.05fr_0.75fr]">
+        <div className="max-w-3xl">
+          <motion.p
+            className="text-xs font-semibold uppercase tracking-[0.22em] text-white/65"
+            variants={item}
+          >
+            CATALYFT | SAUDI MARKET ENTRY PARTNER
+          </motion.p>
 
-      {/* Hero tagline */}
-      <motion.h2
-        className="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl"
-        variants={item}
-      >
-        Launch, Operate, Scale.
-      </motion.h2>
+          <motion.h1
+            className="mt-5 max-w-4xl text-4xl font-extrabold tracking-tight md:text-6xl"
+            variants={item}
+          >
+            Saudi company setup and operations, handled end to end.
+          </motion.h1>
 
-      {/* Subtitle */}
-      <motion.h3
-        className="mt-2 text-xl font-semibold tracking-wide"
-        variants={item}
-      >
-        Your launchpad into the Saudi market.
-      </motion.h3>
+          <motion.p
+            className="mt-6 max-w-2xl text-base leading-relaxed text-white/78 md:text-xl"
+            variants={item}
+          >
+            Catalyft helps international startups, SMEs, and expansion teams
+            set up and run their Saudi operations, from MISA licensing and
+            Commercial Registration to HR, payroll, Etimad, and government
+            portal readiness.
+          </motion.p>
 
-      {/* Description paragraph */}
-      <motion.p
-        className="mt-4 max-w-2xl px-6 text-gray-400 text-base md:text-lg"
-        variants={item}
-      >
-        CataLyft helps companies stabilize, structure, and scale in Saudi
-        Arabia. From government licensing to local operations setup, we handle
-        the heavy lifting so you can focus on growth.
-      </motion.p>
+          <motion.div
+            className="mt-8 flex flex-col gap-3 sm:flex-row"
+            variants={item}
+          >
+            <ContactButton
+              className="inline-flex w-fit items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-neutral-200"
+            >
+              <Calendar className="size-4" />
+              Book a Saudi setup call
+            </ContactButton>
+            <ServicesMenuButton variant="light" />
+          </motion.div>
+        </div>
 
-      {/* CTA */}
-      <motion.div
-        className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
-        variants={item}
-      >
-        <ServicesMenuButton variant="light" />
-      </motion.div>
+        <motion.div
+          className="rounded-2xl border border-white/15 bg-black/45 p-5 shadow-2xl backdrop-blur"
+          variants={item}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+            WHAT WE HANDLE
+          </p>
+          <div className="mt-5 grid gap-3">
+            {[
+              'MISA license, CR, constitutional documents, and bank setup',
+              'Government portals, HR, payroll, and renewals',
+              'Etimad registration, tender workflows, and bid readiness',
+              'RHQ setup, activation, governance, and compliance support',
+            ].map((text) => (
+              <div
+                key={text}
+                className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm text-white/82"
+              >
+                <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-white" />
+                <span>{text}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </motion.section>
   );
 }

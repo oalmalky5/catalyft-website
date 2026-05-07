@@ -4,119 +4,82 @@ import { useId, useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
 export default function RHQFaq() {
-  const [openSection, setOpenSection] = useState(false);
-  const [openItem, setOpenItem] = useState<string | ''>('');
+  const [openItem, setOpenItem] = useState<string | ''>('q1');
 
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
-      q: 'What is a Regional Headquarters (RHQ)?',
-      a: 'An RHQ is a real headquarters in Riyadh that leads and supports your operations across multiple countries. It houses decision-makers and shared services (strategy, finance, people, legal, etc.)—it’s more than a branch or representative office.',
+      q: 'What is a Saudi RHQ?',
+      a: 'A Saudi RHQ is a Regional Headquarters route for multinational groups that want to centralize regional leadership, management, or support functions in Riyadh. It is not just a company registration.',
     },
     {
       id: 'q2',
-      q: 'Who is an RHQ best suited for?',
-      a: 'Multinationals consolidating regional leadership in Riyadh—teams that want one executive base directing multiple markets, with the structure to hire, report, and run core HQ functions in the Kingdom.',
+      q: 'Which companies should consider RHQ?',
+      a: 'RHQ is usually relevant for groups operating across more than one regional market and planning to place real leadership, management, support functions, staffing, governance, and reporting in Riyadh.',
     },
     {
       id: 'q3',
-      q: 'What are the tangible benefits of an RHQ?',
-      a: [
-        'In short: it makes running the region easier and more attractive. RHQ status unlocks a purpose-built incentive framework for eligible HQ activities—most notably long-term relief on corporate and withholding taxes tied to RHQ work. It also smooths mobility: issuing work visas for your team is simpler, dependents can access work via local programs, and top executives have premium residency pathways. Practically, procurement doors open wider because buyers and public entities look for a real HQ presence. Internally, you get a clean way to centralize finance, HR, legal, and procurement in one place, with an operating model designed for multi-country oversight. Put together, it’s a no-brainer if you want a serious regional command center rather than piecemeal offices.',
-      ].join(' '),
+      q: 'Is RHQ the same as opening a branch or local entity?',
+      a: 'No. A branch or local entity is usually used for commercial presence, delivery, hiring, and local operations. RHQ is focused on a regional headquarters model and requires a different assessment and activation plan.',
     },
     {
       id: 'q4',
-      q: 'What are the key requirements we should plan for?',
-      a: 'Think of it in simple terms: you’ll set up a physical headquarters in Riyadh and actually switch on HQ functions—not just put a name on the door. That means appointing your executives, activating leadership and shared services on a clear timeline, and building the first-year team (a common benchmark is around 15 full-time roles including leadership). From there, you keep a clean operating rhythm—light governance, periodic evaluations with evidence packs, and on-time renewals. The RHQ focuses on regional leadership across multiple countries, while direct revenue typically stays with your operating entities. We translate this into a step-by-step plan and keep each obligation visible so nothing slips.',
+      q: 'What does Catalyft assess before starting?',
+      a: 'We assess group structure, regional footprint, intended RHQ functions, staffing plans, governance, documents, approvals, and what activation would require after licensing.',
     },
     {
       id: 'q5',
-      q: 'How do you help with RHQ licensing?',
-      a: 'End-to-end: eligibility confirmation, document preparation, application submission, authority follow-ups, and issuance. After licensing, we complete core registrations and corporate banking so you can operate.',
+      q: 'What documents are usually needed?',
+      a: 'Requirements depend on your group structure and the latest available requirements. Common inputs may include parent-company documents, authorizations, signatory details, ownership information, regional footprint details, and information about intended RHQ functions.',
     },
     {
       id: 'q6',
-      q: 'What about staffing and activation?',
-      a: 'We define required functions, build a staffing plan, onboard executives, and enable compliant hiring for initial roles. We also set up the evidence and reports you’ll need for evaluations and renewals.',
+      q: 'Do you support staffing and activation?',
+      a: 'Yes. We support staffing and function planning, governance routines, reporting expectations, operating trackers, and the early workstreams needed to activate the RHQ after licensing.',
     },
     {
       id: 'q7',
-      q: 'Can the RHQ generate revenue directly?',
-      a: 'RHQs are primarily for strategic and administrative leadership. Direct commercial revenue typically sits with operating entities. We structure the setup so leadership, delivery, and compliance align.',
+      q: 'Can you guarantee RHQ approval or processing timelines?',
+      a: 'No. RHQ approval and timing are subject to authority review and the completeness of the file. We prepare, coordinate, submit where applicable, follow up, and keep decision points visible.',
     },
     {
       id: 'q8',
-      q: 'How do you keep the RHQ compliant over time?',
-      a: 'We install a simple cadence: one tracker for owners and dates, lightweight governance, and monthly/quarterly evidence packs—so renewals and obligations are met on time without scramble.',
+      q: 'What happens after the RHQ license is issued?',
+      a: 'The RHQ still needs to be activated. That can include registrations, access, staffing coordination, governance routines, reporting, renewals, operating trackers, and handover or ongoing support.',
     },
     {
       id: 'q9',
-      q: 'Do we need local portal or regulatory expertise on our side?',
-      a: 'No. We handle the submissions and guide the minimum secure access your team needs to grant. We keep instructions in plain English and only request documents that must come from you.',
+      q: 'Can Catalyft support ongoing RHQ operations?',
+      a: 'Yes. We can support ongoing requirements through an operating tracker, renewal calendar, portal and document support, handover support, or a retainer where needed.',
     },
     {
       id: 'q10',
-      q: 'How fast can we start?',
-      a: 'Usually within days of an initial consult. We align the plan, confirm access, and begin execution on the agreed track while keeping status and next steps visible the whole way.',
+      q: 'What does the RHQ assessment call cover?',
+      a: 'We use the call to understand your group structure, regional footprint, intended functions, Saudi plans, and current documents. From there, we can explain whether RHQ may fit and what should be assessed next.',
     },
   ];
 
   return (
     <section id="faq" className="mx-auto max-w-6xl px-6 py-16">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            FAQ
-          </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            RHQ Q&amp;A
-          </h2>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setOpenSection((v) => !v)}
-          className="mt-4 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
-          aria-expanded={openSection}
-          aria-controls="rhq-faq-panel"
-        >
-          {openSection ? (
-            <Minus className="size-4" />
-          ) : (
-            <Plus className="size-4" />
-          )}
-          {openSection ? 'Hide Q&A' : 'Show Q&A'}
-        </button>
+      <div className="max-w-3xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+          FAQ
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">RHQ FAQ</h2>
       </div>
 
-      {/* zero-space when closed */}
-      <div className={openSection ? 'mt-8' : ''}>
-        <div
-          id="rhq-faq-panel"
-          aria-hidden={!openSection}
-          className={`grid overflow-hidden transition-all duration-300 ${
-            openSection
-              ? 'grid-rows-[1fr] opacity-100'
-              : 'grid-rows-[0fr] opacity-0'
-          }`}
-        >
-          <div className="min-h-0">
-            <ul className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-              {items.map((item) => (
-                <FaqItem
-                  key={item.id}
-                  id={item.id}
-                  question={item.q}
-                  answer={item.a}
-                  openItem={openItem}
-                  setOpenItem={setOpenItem}
-                />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <ul className="mt-8 divide-y divide-neutral-200 border-y border-neutral-200 bg-white">
+        {items.map((item) => (
+          <FaqItem
+            key={item.id}
+            id={item.id}
+            question={item.q}
+            answer={item.a}
+            openItem={openItem}
+            setOpenItem={setOpenItem}
+          />
+        ))}
+      </ul>
     </section>
   );
 }

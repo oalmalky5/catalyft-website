@@ -1,110 +1,85 @@
 'use client';
 
 import { useId, useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 
 export default function EtimadFaq() {
-  const [openSection, setOpenSection] = useState(false);
-  const [openItem, setOpenItem] = useState<string | ''>('');
+  const [openItem, setOpenItem] = useState<string | ''>('q1');
 
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
       q: 'What is Etimad?',
-      a: 'Etimad is the Saudi government e-procurement portal. Buyers publish tenders, and suppliers register, qualify, and submit bids. We get you set up and teach your team how to operate confidently.',
+      a: 'Etimad is the Saudi government e-procurement platform where suppliers can access and respond to government and public-sector tender opportunities.',
     },
     {
       id: 'q2',
-      q: 'Do you handle the account registration?',
-      a: 'Yes. We register your company, set roles and permissions, and hand over secure credentials. You keep ownership; we make sure it’s configured correctly.',
+      q: 'Is Etimad registration enough to start bidding?',
+      a: 'Registration is only the first step. Your team also needs the right access, reusable documents, qualification criteria, submission owners, and a clear process for each opportunity.',
     },
     {
       id: 'q3',
-      q: 'How do you help us find the right tenders?',
-      a: 'We run live sessions on where to search, how to filter and save views, and a simple qualification method so you focus only on bids that fit your strengths and timing.',
+      q: 'Can Catalyft set up our Etimad account?',
+      a: 'Yes. We can support account setup or review existing access, user roles, permissions, and secure handover, subject to the platform requirements and information your team provides.',
     },
     {
       id: 'q4',
-      q: 'What documents are typically needed for a compliant bid?',
-      a: 'We give you a reusable “readiness pack” list—company profile, authorizations, technical evidence, financials, and any sector-specific items—plus templates and examples so your team knows exactly what to prepare.',
+      q: 'Can you help us find relevant tenders?',
+      a: 'Yes. We guide your team on where to search, how to filter opportunities, and how to maintain a shortlist of tenders that may fit your business.',
     },
     {
       id: 'q5',
-      q: 'Do you review our proposals before submission?',
-      a: 'Yes. We review drafts for structure, compliance, and clarity, and we suggest concrete edits. We also teach best practices for technical and commercial responses.',
+      q: 'Can you help us decide which tenders to pursue?',
+      a: 'We help create a go/no-go checklist and review requirements, timing, fit, and internal capacity. Your team owns the final commercial decision to pursue or skip each tender.',
     },
     {
       id: 'q6',
-      q: 'Can you submit the bid for us?',
-      a: 'We guide and supervise the submission end-to-end and can perform the upload with your permission. Final responsibility and declarations remain with your company.',
+      q: 'Do you write the full proposal for us?',
+      a: 'We can support proposal structure, required documents, review points, and submission preparation. Your team owns the commercial and technical proposal content unless a separate writing scope is agreed.',
     },
     {
       id: 'q7',
-      q: 'What about deadlines and bid timelines?',
-      a: 'We set internal checkpoints for clarifications, documents, approvals, and final upload—so there’s no last-minute scramble. Your team sees owners and dates in one place.',
+      q: 'Can you guarantee tender awards?',
+      a: 'No. Tender awards, buyer decisions, scoring results, platform processing, and submission acceptance are decided by the issuing entity or relevant platform process.',
     },
     {
       id: 'q8',
-      q: 'Is everything in Arabic?',
-      a: 'Etimad communications and submissions are mainly in Arabic. We show you how to manage translations efficiently and where English is acceptable. We keep templates bilingual where helpful.',
+      q: 'What documents do we need before bidding?',
+      a: 'Requirements depend on the tender. Common inputs include Commercial Registration, company certificates, authorization letters, signatory details, Arabic documents where needed, and technical or commercial supporting information.',
+    },
+    {
+      id: 'q9',
+      q: 'Can you train our team to use Etimad?',
+      a: 'Yes. We run working sessions for sales, operations, or proposal teams and hand over process notes, templates, trackers, and a repeatable Etimad playbook.',
+    },
+    {
+      id: 'q10',
+      q: 'What does the Etimad readiness call cover?',
+      a: 'We review your current access, document readiness, tender goals, team owners, and the next steps needed to build a workable Etimad submission process.',
     },
   ];
 
   return (
     <section id="faq" className="mx-auto max-w-6xl px-6 py-16">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            FAQ
-          </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            Etimad Q&amp;A
-          </h2>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setOpenSection((v) => !v)}
-          className="mt-4 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
-          aria-expanded={openSection}
-          aria-controls="etimad-faq-panel"
-        >
-          {openSection ? (
-            <Minus className="size-4" />
-          ) : (
-            <Plus className="size-4" />
-          )}
-          {openSection ? 'Hide Q&A' : 'Show Q&A'}
-        </button>
+      <div className="max-w-3xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+          FAQ
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">Etimad FAQ</h2>
       </div>
 
-      {/* zero-space when closed */}
-      <div className={openSection ? 'mt-8' : ''}>
-        <div
-          id="etimad-faq-panel"
-          aria-hidden={!openSection}
-          className={`grid overflow-hidden transition-all duration-300 ${
-            openSection
-              ? 'grid-rows-[1fr] opacity-100'
-              : 'grid-rows-[0fr] opacity-0'
-          }`}
-        >
-          <div className="min-h-0">
-            <ul className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-              {items.map((item) => (
-                <FaqItem
-                  key={item.id}
-                  id={item.id}
-                  question={item.q}
-                  answer={item.a}
-                  openItem={openItem}
-                  setOpenItem={setOpenItem}
-                />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <ul className="mt-8 divide-y divide-neutral-200 border-y border-neutral-200 bg-white">
+        {items.map((item) => (
+          <FaqItem
+            key={item.id}
+            id={item.id}
+            question={item.q}
+            answer={item.a}
+            openItem={openItem}
+            setOpenItem={setOpenItem}
+          />
+        ))}
+      </ul>
     </section>
   );
 }
@@ -147,7 +122,6 @@ function FaqItem({
         </span>
       </button>
 
-      {/* smooth collapse, no leftover space when closed */}
       <div
         id={contentId}
         className={`grid transition-all duration-300 ${

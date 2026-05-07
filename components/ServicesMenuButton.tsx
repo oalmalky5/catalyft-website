@@ -6,7 +6,7 @@ import {
   ChevronDown,
   Rocket,
   ShieldCheck,
-  TrendingUp,
+  Wrench,
   Globe2,
   FileText,
 } from 'lucide-react';
@@ -115,8 +115,8 @@ export default function ServicesMenuButton({
         />
         <MenuItem
           href="/services/scale"
-          icon={<TrendingUp className="size-4" />}
-          label="Scale"
+          icon={<Wrench className="size-4" />}
+          label="Custom Support"
         />
         <MenuItem
           href="/services/rhq"

@@ -17,7 +17,7 @@ export default function Nav() {
   const LINKS_HOME = useMemo(
     () => [
       { href: '#about', label: 'About' },
-      { href: '#what-we-do', label: 'What We Do' },
+      { href: '#what-we-do', label: 'How We Help' },
       { href: '#services', label: 'Services' },
     ],
     []
@@ -28,7 +28,7 @@ export default function Nav() {
     () => [
       { href: '/services/launch', label: 'Launch' },
       { href: '/services/operate', label: 'Operate' },
-      { href: '/services/scale', label: 'Scale' },
+      { href: '/services/scale', label: 'Custom Support' },
       { href: '/services/rhq', label: 'RHQ' },
       { href: '/services/etimad', label: 'Etimad' },
     ],
@@ -49,6 +49,18 @@ export default function Nav() {
   const isActive = (href: string) =>
     pathname === href || pathname?.startsWith(href + '/');
 
+  const desktopLinkClass = (active = false) =>
+    clsx(
+      'group relative rounded-full px-3 py-2 text-sm transition duration-200 hover:-translate-y-px hover:bg-white/8',
+      active ? 'text-white' : 'text-neutral-200 hover:text-white'
+    );
+
+  const desktopAccentClass = (active = false) =>
+    clsx(
+      'absolute inset-x-3 -bottom-0.5 h-px origin-center scale-x-0 bg-[#b9a56d] transition-transform duration-200 group-hover:scale-x-100',
+      active && 'scale-x-100'
+    );
+
   return (
     <header className="sticky top-0 z-50 bg-black text-white" role="banner">
       {/* Desktop / Tablet */}
@@ -67,7 +79,7 @@ export default function Nav() {
         </div>
 
         {/* Center */}
-        <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 md:flex">
+        <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-2 md:flex">
           {isServices
             ? LINKS_SERVICES.map((l) => {
                 const active = isActive(l.href);
@@ -76,22 +88,12 @@ export default function Nav() {
                     key={l.href}
                     href={l.href}
                     prefetch={false}
-                    className={clsx(
-                      'relative text-sm transition',
-                      active
-                        ? 'text-white'
-                        : 'text-neutral-200 hover:text-white'
-                    )}
+                    className={desktopLinkClass(active)}
                   >
-                    {/* Label */}
-                    <span>{l.label}</span>
-                    {/* Active underline */}
+                    <span className="relative z-10">{l.label}</span>
                     <span
                       aria-hidden
-                      className={clsx(
-                        'absolute -bottom-1 left-0 h-0.5 w-full transform-gpu transition-opacity',
-                        active ? 'opacity-100 bg-white' : 'opacity-0 bg-white'
-                      )}
+                      className={desktopAccentClass(active)}
                     />
                   </Link>
                 );
@@ -101,9 +103,10 @@ export default function Nav() {
                   key={l.href}
                   href={l.href}
                   prefetch={false}
-                  className="text-sm text-neutral-200 transition hover:text-white"
+                  className={desktopLinkClass()}
                 >
-                  {l.label}
+                  <span className="relative z-10">{l.label}</span>
+                  <span aria-hidden className={desktopAccentClass()} />
                 </Link>
               ))}
         </div>
@@ -116,14 +119,14 @@ export default function Nav() {
               onClick={handleContactClick}
               className="hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-neutral-200 md:inline-block"
             >
-              Contact
+              Book call
             </button>
           ) : (
             <a
               href="#contact"
               className="hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-neutral-200 md:inline-block"
             >
-              Contact Us
+              Book call
             </a>
           )}
 
@@ -156,9 +159,9 @@ export default function Nav() {
                     href={l.href}
                     prefetch={false}
                     className={clsx(
-                      'rounded-lg px-3 py-2 text-sm hover:bg-white/10',
+                      'rounded-lg border border-transparent px-3 py-2 text-sm transition hover:border-white/10 hover:bg-white/8',
                       active
-                        ? 'text-white underline underline-offset-4'
+                        ? 'border-[#b9a56d]/40 bg-white/8 text-white'
                         : 'text-neutral-200'
                     )}
                     onClick={() => setOpen(false)}
@@ -172,7 +175,7 @@ export default function Nav() {
                   key={l.href}
                   href={l.href}
                   prefetch={false}
-                  className="rounded-lg px-3 py-2 text-sm text-white hover:bg-white/10"
+                  className="rounded-lg border border-transparent px-3 py-2 text-sm text-white transition hover:border-white/10 hover:bg-white/8"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
@@ -188,7 +191,7 @@ export default function Nav() {
               }}
               className="mt-2 rounded-lg bg-white px-3 py-2 text-sm font-medium text-black hover:bg-neutral-200"
             >
-              Contact
+              Book call
             </button>
           ) : (
             <a
@@ -196,7 +199,7 @@ export default function Nav() {
               className="mt-2 rounded-lg bg-white px-3 py-2 text-sm font-medium text-black hover:bg-neutral-200"
               onClick={() => setOpen(false)}
             >
-              Contact Us
+              Book call
             </a>
           )}
         </div>

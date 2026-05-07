@@ -4,113 +4,74 @@ import { useId, useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
 export default function ScaleFaq() {
-  const [openSection, setOpenSection] = useState(false);
-  const [openItem, setOpenItem] = useState<string | ''>('');
+  const [openItem, setOpenItem] = useState<string | ''>('q1');
 
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
-      q: 'What does “Scale” actually cover?',
-      a: 'We handle the work that moves growth forward: certifications and approvals your customers require, onboarding to key accounts and platforms, hiring support for your first roles, proposal/local docs, and a simple operating rhythm so actions keep moving.',
+      q: 'What is Custom Support?',
+      a: 'Custom Support is targeted help for a defined Saudi operations task, blocker, customer request, approval, document pack, or short-term workstream.',
     },
     {
       id: 'q2',
-      q: 'Custom package or pay-per-service — how do I choose?',
-      a: 'If you have several priorities and want one team to drive them, pick a custom package. If you only need one or two actions now, choose pay-per-service. We’ll recommend the right fit after a short call.',
+      q: 'How is this different from Operate?',
+      a: 'Custom Support is for a specific task or short sprint. Operate is for ongoing monthly management across renewals, portals, HR, payroll coordination, certificates, and recurring submissions.',
     },
     {
       id: 'q3',
-      q: 'How fast can you start and what happens first?',
-      a: 'We can usually start within days. First, we confirm priorities and access, then we ship the quickest unlocks while setting up a tracker with owners and dates you can see anytime.',
+      q: 'Can this be a one-off request?',
+      a: 'Yes. A scope can be one defined request, such as preparing an onboarding pack, supporting a registration, cleaning up a portal issue, or preparing a specific certificate or letter.',
     },
     {
       id: 'q4',
-      q: 'Do you handle customer or sector approvals end to end?',
-      a: 'Yes. We prepare the documents, submit the applications, and track to decision. We keep you posted on anything that needs your sign-off and share confirmations once approved.',
+      q: 'Do you offer 30-90 day sprints?',
+      a: 'Yes. A short sprint can work well when the scope has a clear outcome, deadline, inputs, and owner. We define those before work starts.',
     },
     {
       id: 'q5',
-      q: 'Can you onboard us to marketplaces or strategic customers?',
-      a: 'Yes. We assemble and file the onboarding packs those platforms ask for, follow up for approvals, and confirm access so sales isn’t blocked by paperwork.',
+      q: 'What types of documents can you help prepare?',
+      a: 'We can help prepare forms, authorization letters, Arabic company documents, certificates, supporting documents, onboarding packs, proposal documents, and tracker-based handover notes within the agreed scope.',
     },
     {
       id: 'q6',
-      q: 'Do you help with hiring and first-time HR setup?',
-      a: 'Yes. We prepare clean offer and employment documents, guide first-hire onboarding, and put a light people-ops rhythm in place so changes are handled correctly.',
+      q: 'Can you guarantee approvals or customer acceptance?',
+      a: 'No. We prepare, coordinate, submit, and follow up, but approvals and acceptance remain subject to authority, customer, portal, or third-party review.',
     },
     {
       id: 'q7',
-      q: 'How do we keep track of progress?',
-      a: 'You get a single tracker with named owners, due dates, and status updates. We also send short weekly notes: what’s done, what’s next, and any inputs needed from you.',
-    },
-
-    {
-      id: 'q9',
-      q: 'Do you require us to understand local portals or jargon?',
-      a: 'No. We avoid jargon and handle submissions directly. When we need your approval or a document, we ask in plain English and keep it minimal.',
+      q: 'What do you need from us to start?',
+      a: 'We need the request, deadline, available documents, portal or customer requirements, required approvals, a point of contact, and any access or signatures needed to complete the work.',
     },
     {
-      id: 'q10',
-      q: 'What do you need from us to move quickly?',
-      a: 'A primary point of contact, timely approvals, and the documents only you can provide (e.g., company IDs, signed forms). We keep requests short so your team can stay focused on customers.',
+      id: 'q8',
+      q: 'Can Custom Support turn into a monthly retainer?',
+      a: 'Yes. If one-off requests become recurring work, we can recommend moving to Operate so renewals, portals, HR, payroll coordination, certificates, and customer requests are managed monthly.',
     },
   ];
 
   return (
     <section id="faq" className="mx-auto max-w-6xl px-6 py-16">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            FAQ
-          </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            Scale Q&amp;A
-          </h2>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setOpenSection((v) => !v)}
-          className="mt-4 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
-          aria-expanded={openSection}
-          aria-controls="scale-faq-panel"
-        >
-          {openSection ? (
-            <Minus className="size-4" />
-          ) : (
-            <Plus className="size-4" />
-          )}
-          {openSection ? 'Hide Q&A' : 'Show Q&A'}
-        </button>
+      <div className="max-w-3xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+          FAQ
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">
+          Custom Support FAQ
+        </h2>
       </div>
 
-      {/* zero-space when closed */}
-      <div className={`${openSection ? 'mt-8' : ''}`}>
-        <div
-          id="scale-faq-panel"
-          aria-hidden={!openSection}
-          className={`grid overflow-hidden transition-all duration-300 ${
-            openSection
-              ? 'grid-rows-[1fr] opacity-100'
-              : 'grid-rows-[0fr] opacity-0'
-          }`}
-        >
-          <div className="min-h-0">
-            <ul className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-              {items.map((item) => (
-                <FaqItem
-                  key={item.id}
-                  id={item.id}
-                  question={item.q}
-                  answer={item.a}
-                  openItem={openItem}
-                  setOpenItem={setOpenItem}
-                />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <ul className="mt-8 divide-y divide-neutral-200 border-y border-neutral-200 bg-white">
+        {items.map((item) => (
+          <FaqItem
+            key={item.id}
+            id={item.id}
+            question={item.q}
+            answer={item.a}
+            openItem={openItem}
+            setOpenItem={setOpenItem}
+          />
+        ))}
+      </ul>
     </section>
   );
 }

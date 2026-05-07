@@ -4,115 +4,72 @@ import { useId, useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
 export default function LaunchFaq() {
-  const [openSection, setOpenSection] = useState(false);
-  const [openItem, setOpenItem] = useState<string | ''>('');
+  const [openItem, setOpenItem] = useState<string | ''>('q1');
 
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
-      q: 'Can a foreign company set up in Saudi Arabia?',
-      a: 'Yes. Most foreign companies set up either a branch or a new Saudi entity. If foreign-owned, you typically need a MISA license first. We’ll help you choose the right route and handle the steps.',
+      q: 'Do foreign companies need a MISA license?',
+      a: 'In most cases, yes. It depends on the company’s country, ownership, and nationality of the shareholders. We confirm upfront whether MISA is required.',
     },
     {
       id: 'q2',
-      q: 'What is a MISA license and who needs it?',
-      a: 'It’s a foreign investment license issued by the Ministry of Investment (MISA). If your company outside Saudi is the owner, you usually need this license before registering the Saudi CR. We prepare, submit, and track it end to end.',
+      q: 'What documents are usually needed?',
+      a: 'Common requirements include parent company registration documents, board approvals, powers of attorney, passport details, and activity-related information. Some documents may need notarization, legalization, or attestation before submission. Catalyft gives you full guidance on the required documents so the Saudi entity registration can move through the right process.',
     },
     {
       id: 'q3',
-      q: 'How long does setup take and what are the main steps?',
-      a: 'Timing depends on your model and authority response times. The core flow is: prepare/attest documents → MISA license → draft Articles → issue CR → GM visa to iqama → bank account → government portal registrations. We keep tasks moving in parallel.',
+      q: 'Does the General Manager need to be in Saudi?',
+      a: 'Yes, some GM steps require presence in Saudi, including work visa and iqama steps, banking confirmation, and any required in-person government actions. We aim to make the GM visit as smooth as possible and coordinate the required steps cleanly once the GM is in Saudi.',
     },
     {
       id: 'q4',
-      q: 'Do I need to travel to Saudi to finalize?',
-      a: 'The General Manager will need to be present in KSA for us to issue their Iqama (Saudi Residency). Some other stages may require in-person attendance or a local signatory visit—for example, bank account opening. We’ll flag exactly when presence is needed.',
+      q: 'Can Catalyft control government processing times?',
+      a: 'We do our part by preparing the file correctly, following up continuously, and helping move items forward where possible. Government and portal processing times can still vary, so we cannot guarantee that delays will not happen.',
     },
     {
       id: 'q5',
-      q: 'Do I need an office address to register?',
-      a: 'Yes, the compnay will need to be registered at a local KSA address in order to issue the CR. We fully handle that step for you.',
+      q: 'What happens after the Commercial Registration is issued?',
+      a: 'The CR is an important milestone, but it is not the end of setup. Banking and all relevant government portals still need to be activated and handed over properly.',
     },
     {
       id: 'q6',
-      q: 'What are my document attestation requirements?',
-      a: 'We provide the exact templates and pre-fill them correctly. Your team handles will handle the apostilling and the attestation of the documents we prepare for you',
+      q: 'Can you help with bank account opening?',
+      a: 'Yes. In coordination with your team, we guide you through the banking process in Saudi, recommend suitable banks, explain how their requirements may differ, and support the GM with opening the corporate bank account while they are in Saudi.',
     },
     {
       id: 'q7',
-      q: 'What is Saudization and when does it apply?',
-      a: 'Saudization sets minimum Saudi national employment ratios for certain activities and company sizes. Not all categories are the same. We’ll clarify your obligations and timelines during setup.',
+      q: 'Do you support startups looking for programs or incentives?',
+      a: 'Yes. Saudi offers several programs for certain startups that choose Saudi as an operating base. We explain the relevant options, guide you through how to apply, and clarify what documents you need to provide. Approvals, grants, discounts, and incentives are decided by the relevant program, authority, or partner.',
     },
     {
       id: 'q8',
-      q: 'What do government portal registrations cover?',
-      a: 'They enable hiring, payroll compliance, immigration processes, and tax filings. We register your company, request the right access, and hand over credentials securely.',
-    },
-    {
-      id: 'q9',
-      q: 'Roughly how much does setup cost?',
-      a: 'It varies based on the setup route. We provide clear a breakdown of the service and govermental costs associated with establishing your entity',
-    },
-    {
-      id: 'q10',
-      q: 'Are there Special Economic Zones (SEZs) we should consider?',
-      a: 'SEZs can offer targeted incentives for specific sectors. If relevant to your activity, we’ll walk you through eligibility and practical trade-offs versus a standard setup.',
+      q: 'What does the setup call cover?',
+      a: 'It is a free call where we explain the Saudi setup process, guide you through the likely route, and answer any questions you may have about requirements, documents, timeline, and next steps.',
     },
   ];
 
   return (
     <section id="faq" className="mx-auto max-w-6xl px-6 py-16">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            FAQ
-          </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">Launch Q&A</h2>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setOpenSection((v) => !v)}
-          className="mt-4 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
-          aria-expanded={openSection}
-          aria-controls="launch-faq-panel"
-        >
-          {openSection ? (
-            <Minus className="size-4" />
-          ) : (
-            <Plus className="size-4" />
-          )}
-          {openSection ? 'Hide Q&A' : 'Show Q&A'}
-        </button>
+      <div className="max-w-3xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+          FAQ
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">Launch FAQ</h2>
       </div>
 
-      {/* zero-space when closed */}
-      <div className={`${openSection ? 'mt-8' : ''}`}>
-        <div
-          id="launch-faq-panel"
-          aria-hidden={!openSection}
-          className={`grid overflow-hidden transition-all duration-300 ${
-            openSection
-              ? 'grid-rows-[1fr] opacity-100'
-              : 'grid-rows-[0fr] opacity-0'
-          }`}
-        >
-          <div className="min-h-0">
-            <ul className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-              {items.map((item) => (
-                <FaqItem
-                  key={item.id}
-                  id={item.id}
-                  question={item.q}
-                  answer={item.a}
-                  openItem={openItem}
-                  setOpenItem={setOpenItem}
-                />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <ul className="mt-8 divide-y divide-neutral-200 border-y border-neutral-200 bg-white">
+        {items.map((item) => (
+          <FaqItem
+            key={item.id}
+            id={item.id}
+            question={item.q}
+            answer={item.a}
+            openItem={openItem}
+            setOpenItem={setOpenItem}
+          />
+        ))}
+      </ul>
     </section>
   );
 }

@@ -1,204 +1,442 @@
 import type { Metadata } from 'next';
-import {
-  ShieldCheck,
-  Building2,
-  Users2,
-  BadgeCheck,
-  Package,
-  ClipboardList,
-  Briefcase,
-  FileCheck2,
-  CheckCircle2,
-  Mail,
-} from 'lucide-react';
-
-import OperateFaq from '../../../components/OperateFaq'; // or '@/components/OperateFaq' if using path aliases
-import ContactButton from '@/components/ContactButton'; // uses your ContactDialog under the hood
+import { ArrowRight, CheckCircle2, Mail } from 'lucide-react';
+import ContactButton from '@/components/ContactButton';
+import OperateFaq from '@/components/OperateFaq';
 
 export const metadata: Metadata = {
-  title:
-    'Operate in Saudi – Ongoing Compliance, HR & Payroll, Approvals | CataLyft',
+  title: 'Saudi Operations Support | Operate Track | Catalyft',
   description:
-    'Keep Saudi operations moving on a simple retainer: renewals, HR & payroll coordination, visas/iqama, customer/vendor registrations, and the certificates you need — with clear owners and timelines.',
+    'Monthly Saudi operations support for renewals, certificates, Qiwa, GOSI, Mudad, HR and payroll coordination, government portals, and customer or vendor onboarding requests.',
 };
+
+const workstreams = [
+  'Renewals',
+  'Portals',
+  'HR records',
+  'Payroll coordination',
+  'Certificates',
+  'Customer onboarding',
+];
+
+const cycleSteps = [
+  {
+    number: '01',
+    title: 'Review what is due',
+    desc: 'We check upcoming renewals, payroll dates, portal tasks, employee changes, certificates, and customer requests.',
+  },
+  {
+    number: '02',
+    title: 'Prepare and submit',
+    desc: 'We prepare the required forms, documents, portal updates, and submission packs within the agreed retainer scope.',
+  },
+  {
+    number: '03',
+    title: 'Coordinate approvals',
+    desc: 'We tell your team what needs approval, signature, payment, employee input, bank action, or management decision.',
+  },
+  {
+    number: '04',
+    title: 'Track blockers and follow up',
+    desc: 'We track pending items across portals, authorities, banks, vendors, customers, and internal stakeholders.',
+  },
+  {
+    number: '05',
+    title: 'Report status and next actions',
+    desc: 'You receive a simple status view showing what is done, what is pending, what is blocked, and what is coming next.',
+  },
+];
+
+const managedCategories = [
+  {
+    title: 'Company compliance',
+    items: [
+      'License and registration renewals',
+      'Company certificates and proof-of-compliance documents',
+      'National address and portal record updates',
+      'Government requests and follow-ups',
+    ],
+  },
+  {
+    title: 'People and payroll coordination',
+    items: [
+      'Qiwa, GOSI, Mudad, and HR record coordination',
+      'Employment contract updates',
+      'Work permit and iqama support',
+      'Monthly payroll coordination and WPS follow-through',
+    ],
+  },
+  {
+    title: 'Portals and operating access',
+    items: [
+      'Government portal administration',
+      'User access and credential handover',
+      'Status tracking across active requests',
+      'Renewal and submission calendars',
+    ],
+  },
+  {
+    title: 'Customer and vendor requirements',
+    items: [
+      'Customer onboarding document packs',
+      'Supplier and marketplace registrations',
+      'Letters, attestations, and required certificates',
+      'Submission follow-up until accepted or next action is clear',
+    ],
+  },
+];
+
+const clientNeeds = [
+  'Authorized portal access or approved sub-user access',
+  'Employee details and updates when HR records change',
+  'Payroll inputs, salary changes, and payment confirmation',
+  'Management approvals for submissions, renewals, or documents',
+  'Signatures, stamps, or board approvals where required',
+  'Customer or vendor requirements when onboarding packs are requested',
+];
+
+const problems = [
+  'A certificate expires before a customer or bank asks for it',
+  'Payroll is delayed because employee records, WPS, or bank steps are not aligned',
+  'Qiwa, GOSI, or Mudad records do not match',
+  'A portal request is submitted late because no one owns it',
+  'A customer onboarding pack is missing Arabic documents, certificates, or authorization letters',
+  'Access sits with one person and is not handed over properly',
+  'Leadership has no clear view of what is done, pending, or blocked',
+];
+
+const retainers = [
+  {
+    level: 'Light support',
+    bestFor:
+      'Companies with low activity that need renewals, reminders, certificates, and occasional portal support.',
+    includes: [
+      'Compliance calendar',
+      'Renewal tracking',
+      'Certificate requests',
+      'Light portal support',
+      'Monthly status summary',
+    ],
+  },
+  {
+    level: 'Standard support',
+    bestFor:
+      'Active companies with employees, payroll, portals, and recurring government requirements.',
+    includes: [
+      'Everything in Light',
+      'HR and payroll coordination',
+      'Qiwa, GOSI, Mudad follow-through',
+      'Employment record updates',
+      'Customer/vendor document support',
+      'Regular status tracker',
+    ],
+  },
+  {
+    level: 'Full support',
+    bestFor:
+      'Companies that need Catalyft to act as their ongoing Saudi operations partner.',
+    includes: [
+      'Everything in Standard',
+      'Broader portal administration',
+      'Recurring approvals and submissions',
+      'Onboarding packs and customer requests',
+      'Employee and vendor coordination',
+      'More frequent operating updates',
+    ],
+  },
+];
+
+const jumpLinks = [
+  { href: '#after-setup', label: 'After setup' },
+  { href: '#monthly-cycle', label: 'Monthly cycle' },
+  { href: '#what-we-manage', label: 'What we manage' },
+  { href: '#responsibilities', label: 'Responsibilities' },
+  { href: '#retainers', label: 'Retainers' },
+  { href: '#faq', label: 'FAQ' },
+];
 
 export default function OperatePage() {
   return (
     <main className="bg-white text-neutral-900">
-      {/* HERO */}
       <section className="bg-black text-white">
-        <div className="mx-auto max-w-6xl px-6 py-24 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold tracking-widest">
-            <ShieldCheck className="size-3.5" />
-            Operate Track
-          </span>
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="max-w-4xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+              Operate track
+            </p>
+            <h1 className="mt-5 text-4xl font-bold tracking-tight md:text-6xl">
+              Keep your Saudi entity active, compliant, and ready to operate.
+            </h1>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/70 md:text-lg">
+              Catalyft supports the recurring work that keeps a Saudi entity
+              usable after setup, including renewals, certificates, Qiwa, GOSI,
+              Mudad, HR and payroll coordination, government portals, and
+              customer or vendor onboarding requests.
+            </p>
 
-          <h1 className="mt-5 text-4xl font-extrabold tracking-tight md:text-6xl">
-            Your Saudi operations, uninterrupted.
-          </h1>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ContactButton className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-neutral-200">
+                Book an operations support call
+                <ArrowRight className="size-4" />
+              </ContactButton>
+              <a
+                href="#what-we-manage"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+              >
+                See what we manage
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <p className="mx-auto mt-4 max-w-2xl text-white/80">
-            We run the critical, recurring work behind the scenes — renewals,
-            people ops, payments & certificates, and the day-to-day submissions
-            — so your team can focus on customers and growth.
-          </p>
-
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <ContactButton className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
-              Book a consultation
-            </ContactButton>
-
+      <nav className="border-b border-neutral-200 bg-white/95 px-6 py-4 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl gap-3 overflow-x-auto text-sm text-neutral-600">
+          {jumpLinks.map((link) => (
             <a
-              href="mailto:info@catalyft.sa?subject=Operate%20Track%20Inquiry"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+              key={link.href}
+              href={link.href}
+              className="shrink-0 rounded-full border border-neutral-200 px-4 py-2 transition hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-950"
             >
-              <Mail className="size-4" />
-              info@catalyft.sa
+              {link.label}
             </a>
+          ))}
+        </div>
+      </nav>
+
+      <section id="after-setup" className="scroll-mt-24 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                After setup
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                After setup, the work continues
+              </h2>
+            </div>
+            <div>
+              <p className="text-base leading-relaxed text-neutral-600">
+                A Saudi entity is not finished once the Commercial Registration
+                is issued. Renewals, portals, employee records, payroll,
+                certificates, and customer onboarding requests still need active
+                follow-up. Operate is for companies that want this work managed
+                through a clear monthly process.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                {workstreams.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-700"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="monthly-cycle"
+        className="scroll-mt-24 bg-[#f7f6f2] px-6 py-16 md:py-20"
+      >
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              Monthly cycle
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              The monthly operating cycle
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-neutral-600">
+              Each month, we keep the key workstreams visible, update what is
+              due, handle agreed submissions, and flag what needs client
+              approval or action.
+            </p>
           </div>
 
-          <ul className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-2 text-sm text-white/70 sm:grid-cols-3">
-            <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Ongoing compliance (renewals &
-              certificates)
-            </li>
-            <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> HR & payroll coordination
-            </li>
-            <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Approvals & registrations that
-              unblock delivery
-            </li>
+          <ol className="relative border-l border-neutral-300 pl-7">
+            {cycleSteps.map((step) => (
+              <CycleStep key={step.number} {...step} />
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="what-we-manage" className="scroll-mt-24 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              What we manage
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              What Catalyft manages
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-x-12 gap-y-10 border-y border-neutral-200 py-10 md:grid-cols-2">
+            {managedCategories.map((category) => (
+              <ListBlock
+                key={category.title}
+                title={category.title}
+                items={category.items}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="responsibilities" className="scroll-mt-24 px-6 py-16">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              Responsibilities
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              What we need from your team
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-neutral-600">
+              Operate works best when responsibilities are clear. Catalyft
+              manages the agreed operational work, but some items still require
+              client input, approvals, payments, signatures, or employee
+              information.
+            </p>
+          </div>
+
+          <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
+            {clientNeeds.map((item) => (
+              <li key={item} className="flex gap-4 py-4 text-sm leading-relaxed text-neutral-700">
+                <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-neutral-950" />
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
 
-      {/* WHAT WE RUN (PLAIN LANGUAGE) */}
-      <section id="offer" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          What we run
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          The essentials that keep you compliant and moving.
-        </h2>
+      <section id="problems" className="bg-black px-6 py-16 text-white">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
+              Problems prevented
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              Common problems we help prevent
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-white/65">
+              Most operating issues start small: a missed renewal, outdated
+              portal record, unclear owner, pending employee update, or customer
+              document request with no one assigned.
+            </p>
+          </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Feature
-            icon={<Building2 className="size-5" />}
-            title="Company renewals & certificates"
-            desc="We track dates, prep the right documents, and coordinate renewals and proof-of-compliance certificates so nothing expires or blocks delivery."
-          />
-          <Feature
-            icon={<Users2 className="size-5" />}
-            title="People ops: visas, iqama & changes"
-            desc="From issuing/renewing work permits and iqama to role or data updates, we guide your team and handle submissions end-to-end."
-          />
-          <Feature
-            icon={<BadgeCheck className="size-5" />}
-            title="HR & payroll coordination"
-            desc="Monthly payroll runs, employment contracts, and record updates — coordinated cleanly and ready for audit when you need it."
-          />
-          <Feature
-            icon={<Package className="size-5" />}
-            title="Customer & vendor onboarding"
-            desc="We assemble and submit the packs your priority customers, platforms, and marketplaces ask for — and track to approval."
-          />
-          <Feature
-            icon={<FileCheck2 className="size-5" />}
-            title="Approvals that unlock operations"
-            desc="Sector or third-party approvals, letters, and attestations handled with clear steps, owners, and timelines."
-          />
-          <Feature
-            icon={<ClipboardList className="size-5" />}
-            title="Simple operations reporting"
-            desc="One tracker to see owners, tasks, due dates, and renewals. No guesswork — just progress."
-          />
-        </div>
-
-        {/* RETAINER NOTE */}
-        <div className="mt-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-          <p className="text-sm text-neutral-700">
-            <span className="font-medium">How it’s delivered:</span> Operate is
-            a simple retainer. We agree the scope (light, standard, or full) and
-            run it every month with the same quality bar — adding one-off help
-            when you need it.
-          </p>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS MONTH-TO-MONTH */}
-      <section id="process" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          How it works
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Month-to-month rhythm.
-        </h2>
-
-        <ol className="relative mt-10 space-y-8 border-l border-neutral-200 pl-6">
-          <Step
-            step="Step 01"
-            title="Kickoff & access"
-            desc="We set up your tracker, align priorities, and securely collect access so work can start immediately."
-          />
-          <Step
-            step="Step 02"
-            title="Calendar & compliance guardrails"
-            desc="We load renewals, cutoffs, and deliverables into a single calendar so you never miss a date."
-          />
-          <Step
-            step="Step 03"
-            title="People ops & approvals"
-            desc="We run monthly payroll coordination, handle visas/iqama, and submit the approvals/registrations that unblock delivery."
-          />
-          <Step
-            step="Step 04"
-            title="Status & next steps"
-            desc="Short, useful updates — what’s done, what’s pending, what we need from you — then we rinse and repeat."
-          />
-        </ol>
-      </section>
-
-      {/* EXAMPLES (PULLED FROM REAL TASKS, PLAIN LANGUAGE) */}
-      <section className="mx-auto max-w-6xl px-6 pb-8">
-        <div className="rounded-2xl border border-neutral-200 p-6">
-          <h3 className="text-lg font-semibold">Examples of what we handle</h3>
-          <ul className="mt-3 grid list-disc gap-2 pl-5 text-sm text-neutral-700 md:grid-cols-2">
-            <li>Annual license and company registration renewals</li>
-            <li>Issuing and renewing work permits & iqama for team members</li>
-            <li>Monthly payroll coordination and proof (WPS/compliance)</li>
-            <li>Customer & marketplace onboarding packs and submissions</li>
-            <li>Employment contract setup and changes</li>
-            <li>Letters, attestations, and certificates needed for delivery</li>
+          <ul className="divide-y divide-white/10 border-y border-white/10">
+            {problems.map((item) => (
+              <li key={item} className="flex gap-4 py-4 text-sm leading-relaxed text-white/75">
+                <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#b9a56d]" />
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
 
-      {/* FAQ (collapsible client component) */}
+      <section id="retainers" className="scroll-mt-24 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              Retainer levels
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              Choose the level of operating support you need
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-neutral-600">
+              Operate can be scoped as a light, standard, or full monthly
+              retainer depending on how much recurring Saudi work your team
+              wants Catalyft to manage.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-x-auto border-y border-neutral-200">
+            <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-neutral-200">
+                  <th className="w-[22%] py-4 pr-6 font-semibold text-neutral-950">
+                    Level
+                  </th>
+                  <th className="w-[36%] px-6 py-4 font-semibold text-neutral-950">
+                    Best for
+                  </th>
+                  <th className="w-[42%] py-4 pl-6 font-semibold text-neutral-950">
+                    Includes
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-200">
+                {retainers.map((retainer) => (
+                  <tr key={retainer.level} className="align-top">
+                    <td className="py-6 pr-6 text-base font-semibold text-neutral-950">
+                      {retainer.level}
+                    </td>
+                    <td className="px-6 py-6 leading-relaxed text-neutral-600">
+                      {retainer.bestFor}
+                    </td>
+                    <td className="py-6 pl-6">
+                      <ul className="grid gap-2 text-neutral-700">
+                        {retainer.includes.map((item) => (
+                          <li key={item} className="flex gap-2">
+                            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-950" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <a
+            href="#contact"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+          >
+            Find the right retainer level
+            <ArrowRight className="size-4" />
+          </a>
+        </div>
+      </section>
+
       <OperateFaq />
 
-      {/* FINAL CTA (anchor for the main site nav) */}
-      <section id="contact" className="scroll-mt-24 bg-black text-white">
-        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Keep your Saudi operations running smoothly.
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-white/80">
-            Book a quick consult and we’ll recommend the right retainer level
-            for your stage.
-          </p>
+      <section id="contact" className="scroll-mt-24 bg-black px-6 py-16 text-white md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 border-y border-white/10 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+              Get in touch
+            </p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
+              Need help keeping your Saudi entity operating properly?
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
+              Book an operations support call and we’ll review your current
+              setup, recurring requirements, active blockers, and the right
+              support level.
+            </p>
+          </div>
 
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <ContactButton className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
-              Book a consultation
+          <div className="lg:ml-auto lg:max-w-sm">
+            <ContactButton className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-neutral-200 sm:w-auto lg:w-full">
+              Book an operations support call
+              <ArrowRight className="size-4" />
             </ContactButton>
-
             <a
-              href="mailto:info@catalyft.sa?subject=Operate%20Track%20Inquiry"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+              href="mailto:info@catalyft.sa?subject=Catalyft%20Operate%20Track%20Inquiry"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/70 underline underline-offset-4 transition hover:text-white"
             >
               <Mail className="size-4" />
-              info@catalyft.sa
+              Email info@catalyft.sa
             </a>
           </div>
         </div>
@@ -207,33 +445,45 @@ export default function OperatePage() {
   );
 }
 
-/* ---------- small server subcomponents ---------- */
-
-function Feature(props: {
-  icon: React.ReactNode;
+function CycleStep({
+  number,
+  title,
+  desc,
+}: {
+  number: string;
   title: string;
   desc: string;
 }) {
   return (
-    <div className="group rounded-2xl border border-neutral-200 p-6 transition hover:border-neutral-300">
-      <div className="mb-3 grid size-9 place-items-center rounded-lg bg-black text-white">
-        {props.icon}
+    <li className="relative pb-10 last:pb-0">
+      <span className="absolute -left-[37px] top-1 grid size-5 place-items-center rounded-full border border-neutral-300 bg-[#f7f6f2]" />
+      <div className="grid gap-4 md:grid-cols-[100px_1fr]">
+        <p className="text-sm font-semibold tracking-[0.18em] text-neutral-500">
+          {number}
+        </p>
+        <div>
+          <h3 className="text-xl font-semibold tracking-tight text-neutral-950">
+            {title}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-neutral-600">{desc}</p>
+        </div>
       </div>
-      <h3 className="text-lg font-semibold">{props.title}</h3>
-      <p className="mt-2 text-sm text-neutral-600">{props.desc}</p>
-    </div>
+    </li>
   );
 }
 
-function Step(props: { step: string; title: string; desc: string }) {
+function ListBlock({ title, items }: { title: string; items: string[] }) {
   return (
-    <li className="ml-2">
-      <div className="absolute -left-[9px] mt-1.5 size-4 rounded-full border border-neutral-300 bg-white" />
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-        {props.step}
-      </p>
-      <h3 className="mt-1 text-lg font-semibold">{props.title}</h3>
-      <p className="mt-1 text-sm text-neutral-600">{props.desc}</p>
-    </li>
+    <div>
+      <h3 className="text-xl font-semibold text-neutral-950">{title}</h3>
+      <ul className="mt-5 grid gap-3">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3 text-sm leading-relaxed text-neutral-700">
+            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-950" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

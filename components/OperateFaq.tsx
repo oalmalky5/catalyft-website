@@ -4,112 +4,72 @@ import { useId, useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
 export default function OperateFaq() {
-  const [openSection, setOpenSection] = useState(false);
-  const [openItem, setOpenItem] = useState<string | ''>('');
+  const [openItem, setOpenItem] = useState<string | ''>('q1');
 
   const items: { id: string; q: string; a: string }[] = [
     {
       id: 'q1',
-      q: 'What exactly do you handle every month?',
-      a: 'We handle the recurring work that keeps your Saudi operation running: renewals and compliance deadlines, payroll coordination, employment contracts and updates, visas/work permits/iqama, customer & vendor onboarding packs, and the letters or certificates buyers ask for. You get one tracker with owners, due dates, and status.',
+      q: 'Is Operate only for companies Catalyft helped set up?',
+      a: 'No. We can support companies Catalyft helped set up and companies that already have a Saudi entity. We start by reviewing your current records, portal access, active requirements, and recurring obligations.',
     },
     {
       id: 'q2',
-      q: 'Do you track renewals and compliance dates so nothing expires?',
-      a: 'Yes. We load all renewal dates into a shared calendar, prepare the required documents, submit on time, and confirm completion. We flag anything that needs your sign-off ahead of time and keep proof on file.',
+      q: 'What does a monthly retainer include?',
+      a: 'It depends on the agreed scope. A retainer can include renewal tracking, certificate requests, portal administration, HR and payroll coordination, Qiwa, GOSI, Mudad follow-up, customer onboarding documents, and regular status updates.',
     },
     {
       id: 'q3',
-      q: 'Who handles visas, work permits, and iqama for our team?',
-      a: 'We do. We gather requirements, prepare the packs, submit the requests, and track each stage through to issuance or renewal. Your role is to provide the personal documents we request and approve key steps—we run the process end to end.',
+      q: 'Can you manage Qiwa, GOSI, Mudad, and other portals?',
+      a: 'Yes, within the agreed scope and access model. We coordinate records, submissions, follow-ups, and status tracking across the relevant portals, subject to portal rules and authority processing.',
     },
     {
       id: 'q4',
-      q: 'How do you run payroll and HR each month?',
-      a: 'We coordinate monthly payroll runs, prepare the needed proofs, and keep employment records clean and audit-ready. We also handle contract creation, amendments, joins/leavers, and job/compensation changes with the right approvals.',
+      q: 'Do you handle payroll directly?',
+      a: 'We provide payroll coordination unless a direct payroll processing scope is agreed separately. That means we help align employee records, payroll inputs, WPS requirements, approvals, and follow-through with the relevant parties.',
     },
     {
       id: 'q5',
-      q: 'Will you onboard us with customers, marketplaces, and vendors?',
-      a: 'Yes. We assemble and submit the onboarding packs those platforms ask for (company docs, forms, certificates, IDs, etc.), follow up for approvals, and update you as soon as access is granted.',
+      q: 'Can you guarantee renewals or approvals happen on time?',
+      a: 'We prepare, submit, track, and follow up within the agreed scope. Some outcomes still depend on authority, bank, customer, or portal processing, and on receiving required approvals or documents from your team.',
     },
     {
       id: 'q6',
-      q: 'Do you prepare official letters and certificates when buyers ask?',
-      a: 'Yes. We prepare and submit the required letters, attestations, and certificates your customers request to release payments, register you as a supplier, or allow delivery. We keep templates ready so turnarounds are fast.',
+      q: 'What access do you need from us?',
+      a: 'We usually need authorized portal access or approved sub-user access, plus the right internal contacts for approvals, signatures, payroll inputs, employee updates, and payment confirmations.',
     },
     {
       id: 'q7',
-      q: 'What do you need from us to keep things moving?',
-      a: 'Two things: timely approvals and the documents only you can provide (e.g., passport scans or signed forms). We keep requests short and specific inside the tracker so your team spends minimal time.',
+      q: 'Can Operate include one-off tasks?',
+      a: 'Yes. One-off tasks can be added when they fit the scope, such as a certificate request, customer onboarding pack, portal cleanup, vendor registration, or specific government submission.',
     },
     {
       id: 'q8',
-      q: 'How do we see progress and who is accountable?',
-      a: 'You get a single live tracker with each task’s owner, due date, and status—plus short weekly updates. We assign named owners on our side so you always know who is driving what and when it will be done.',
-    },
-    {
-      id: 'q9',
-      q: 'Do you require technical “portal” knowledge from our team?',
-      a: 'No. We avoid jargon and handle the submissions ourselves. We guide you to grant the minimum secure access we need, and we document each step in plain English so anyone on your team can follow along.',
+      q: 'How do we choose between light, standard, and full support?',
+      a: 'We review your current activity, employee count, portal workload, renewals, customer requirements, and internal capacity. From there, we recommend the retainer level that matches the amount of recurring work you want Catalyft to manage.',
     },
   ];
 
   return (
     <section id="faq" className="mx-auto max-w-6xl px-6 py-16">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            FAQ
-          </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            Operate Q&amp;A — clear and simple.
-          </h2>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setOpenSection((v) => !v)}
-          className="mt-4 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
-          aria-expanded={openSection}
-          aria-controls="operate-faq-panel"
-        >
-          {openSection ? (
-            <Minus className="size-4" />
-          ) : (
-            <Plus className="size-4" />
-          )}
-          {openSection ? 'Hide Q&A' : 'Show Q&A'}
-        </button>
+      <div className="max-w-3xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+          FAQ
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">Operate FAQ</h2>
       </div>
 
-      {/* zero-space when closed */}
-      <div className={`${openSection ? 'mt-8' : ''}`}>
-        <div
-          id="operate-faq-panel"
-          aria-hidden={!openSection}
-          className={`grid overflow-hidden transition-all duration-300 ${
-            openSection
-              ? 'grid-rows-[1fr] opacity-100'
-              : 'grid-rows-[0fr] opacity-0'
-          }`}
-        >
-          <div className="min-h-0">
-            <ul className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-              {items.map((item) => (
-                <FaqItem
-                  key={item.id}
-                  id={item.id}
-                  question={item.q}
-                  answer={item.a}
-                  openItem={openItem}
-                  setOpenItem={setOpenItem}
-                />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <ul className="mt-8 divide-y divide-neutral-200 border-y border-neutral-200 bg-white">
+        {items.map((item) => (
+          <FaqItem
+            key={item.id}
+            id={item.id}
+            question={item.q}
+            answer={item.a}
+            openItem={openItem}
+            setOpenItem={setOpenItem}
+          />
+        ))}
+      </ul>
     </section>
   );
 }

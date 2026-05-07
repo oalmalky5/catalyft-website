@@ -2,108 +2,119 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
-import {
-  Building2,
-  ShieldCheck,
-  TrendingUp,
-  Globe2,
-  FileText,
-  type LucideIcon,
-} from 'lucide-react';
-import {
-  MotionSection,
-  Stagger,
-  Item,
-  fadeIn,
-  fadeInUp,
-} from '@/components/anim';
+import { useState } from 'react';
+import clsx from 'clsx';
+import { ArrowRight, ChevronDown, ChevronRight } from 'lucide-react';
+import { MotionSection, Item, fadeIn, fadeInUp } from '@/components/anim';
 
-type Badge = 'Launch' | 'Operate' | 'Scale' | 'RHQ' | 'Etimad';
+type ServiceId = 'launch' | 'operate' | 'custom' | 'rhq' | 'etimad';
 
-type Offering = {
-  badge: Badge;
+type Service = {
+  id: ServiceId;
+  group: 'Core services' | 'Specialist services';
+  label: string;
   title: string;
-  subtitle: string;
-  bullets: string[];
+  description: string;
+  bestFor: string;
+  includes: string[];
+  cta: string;
   href: string;
 };
 
-const ICONS: Record<Badge, LucideIcon> = {
-  Launch: Building2,
-  Operate: ShieldCheck,
-  Scale: TrendingUp,
-  RHQ: Globe2,
-  Etimad: FileText,
-};
-
-const ROW1: Offering[] = [
+const services: Service[] = [
   {
-    badge: 'Launch',
-    title: 'Launch (Foundation Setup)',
-    subtitle: 'Start in Saudi with a precise, engineered launch.',
-    bullets: [
-      'MISA license issuance & guidance',
-      'Commercial Registration & Articles drafting/issuance',
-      'GM onboarding (visa → iqama) & secure handover',
-      'Corporate bank setup & key gov-portal onboarding',
+    id: 'launch',
+    group: 'Core services',
+    label: 'Launch',
+    title: 'Saudi entity setup',
+    description:
+      'Set up your Saudi entity and get the core operating basics in place.',
+    bestFor: 'Foreign companies entering Saudi for the first time.',
+    includes: [
+      'MISA licensing and Commercial Registration',
+      'Constitutional documents and formation filings',
+      'GM onboarding, bank setup, and core portal activation',
+      'Clear handover of what is live, pending, and next',
     ],
+    cta: 'Explore Launch',
     href: '/services/launch',
   },
   {
-    badge: 'Operate',
-    title: 'Operate (Continuity & Compliance)',
-    subtitle: 'Keep operations stable, compliant, and moving.',
-    bullets: [
-      'Renewals & recurring filings with clear reminders',
-      'HR & payroll guardrails (contracts, WPS, GOSI rhythms)',
-      'Vendor/marketplace registrations & third-party approvals',
-      'One tracker for owners, dates, and follow-through',
+    id: 'operate',
+    group: 'Core services',
+    label: 'Operate',
+    title: 'Post-setup operations',
+    description: 'Keep your Saudi entity active, compliant, and ready to operate.',
+    bestFor:
+      'Companies already incorporated in Saudi that need ongoing support.',
+    includes: [
+      'Renewals, recurring filings, and company certificates',
+      'Qiwa, GOSI, Mudad, HR, and payroll coordination',
+      'Portal administration and compliance follow-through',
+      'Ongoing operational support across recurring requirements',
     ],
+    cta: 'Explore Operate',
     href: '/services/operate',
   },
   {
-    badge: 'Scale',
-    title: 'Scale (Custom & PPS)',
-    subtitle: 'Exactly what you need — bundle or pay-per-service.',
-    bullets: [
-      'Custom scope after discovery, built around targets',
-      'Approvals & certifications that unlock delivery',
-      'Hands-on enablement workshops (non-Etimad)',
-      'Customer onboarding packs & light prospecting support',
+    id: 'custom',
+    group: 'Core services',
+    label: 'Custom support',
+    title: 'Saudi operations sprint',
+    description:
+      'Targeted support for specific blockers, short-term needs, or custom scope.',
+    bestFor: 'Teams that need help with a defined task after setup.',
+    includes: [
+      'Approvals, certificates, and customer onboarding requirements',
+      'Supplier and platform registrations',
+      'Process cleanup, enablement sessions, or defined support tasks',
+      'Flexible scope built around the immediate need',
     ],
+    cta: 'Explore Custom Support',
     href: '/services/scale',
   },
-];
-
-const ROW2: Offering[] = [
   {
-    badge: 'RHQ',
-    title: 'Regional Headquarters (RHQ)',
-    subtitle: 'License, activate, and operate your regional command center.',
-    bullets: [
-      'End-to-end RHQ licensing & core registrations',
-      'Staffing plan & activation of HQ functions',
-      'Governance, evidence packs, & renewals cadence',
-      'Banking and compliant operating setup in Riyadh',
+    id: 'rhq',
+    group: 'Specialist services',
+    label: 'RHQ',
+    title: 'Regional Headquarters support',
+    description: 'Set up and activate your Regional Headquarters in Riyadh.',
+    bestFor:
+      'Groups exploring RHQ or preparing to operate under the RHQ model.',
+    includes: [
+      'RHQ licensing and related registrations',
+      'Activation planning and compliance support',
+      'Staffing and operating setup in Riyadh',
+      'Ongoing RHQ requirements and renewals',
     ],
+    cta: 'Explore RHQ',
     href: '/services/rhq',
   },
   {
-    badge: 'Etimad',
-    title: 'Etimad Enablement',
-    subtitle: 'Onboarding, working sessions, and bid submission know-how.',
-    bullets: [
-      'Account setup, roles, and secure access handover',
-      'Finding & qualifying tenders with a simple go/no-go',
-      'Proposal structure, reviews, and compliant document packs',
-      'Submission workflow, checkpoints, and timelines',
+    id: 'etimad',
+    group: 'Specialist services',
+    label: 'Etimad',
+    title: 'Etimad enablement',
+    description: 'Get registered on Etimad and build a workable tender process.',
+    bestFor: 'Companies selling to government or semi-government buyers.',
+    includes: [
+      'Account setup and access handover',
+      'Tender search and qualification support',
+      'Bid document preparation and submission workflows',
+      'Working sessions and first-submission guidance',
     ],
+    cta: 'Explore Etimad',
     href: '/services/etimad',
   },
 ];
 
+const groups: Service['group'][] = ['Core services', 'Specialist services'];
+
 export default function Services() {
+  const [selectedId, setSelectedId] = useState<ServiceId>('launch');
+  const selected =
+    services.find((service) => service.id === selectedId) ?? services[0];
+
   return (
     <MotionSection
       id="services"
@@ -112,144 +123,255 @@ export default function Services() {
       amount={0.25}
     >
       <div className="mx-auto max-w-6xl px-6 py-20">
-        {/* Header */}
-        <div className="mb-12 text-center">
+        <div className="mb-10 max-w-3xl">
           <Item variants={fadeIn}>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
               Services
             </p>
           </Item>
           <Item variants={fadeInUp}>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-              Built to Launch, Operate, Scale — plus RHQ and Etimad
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-950 md:text-5xl">
+              Choose the support you need
             </h2>
           </Item>
           <Item variants={fadeInUp}>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-700">
-              Pick the track you need now—or mix and match. These tiles are
-              summaries; click through for the full flow, inclusions, and FAQs.
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
+              Select a service track to see what it includes, who it’s for, and
+              where to go next.
             </p>
           </Item>
         </div>
 
-        {/* Row 1: three equal cards */}
-        <Stagger delay={0.08}>
-          <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {ROW1.map((o) => (
-              <Item key={o.badge}>
-                <ServiceCard o={o} />
-              </Item>
-            ))}
-          </div>
-        </Stagger>
+        <div className="hidden gap-6 lg:grid lg:grid-cols-[0.4fr_0.6fr]">
+          <ServiceSelector selectedId={selectedId} onSelect={setSelectedId} />
+          <ServiceDetail service={selected} />
+        </div>
 
-        {/* Row 2: centered two cards, same width as row 1 (1/3 each) */}
-        <Stagger delay={0.08}>
-          <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-6">
-            {ROW2.map((o, idx) => (
-              <Item
-                key={o.badge}
-                className={
-                  idx === 0
-                    ? 'lg:col-span-2 lg:col-start-2'
-                    : 'lg:col-span-2 lg:col-start-4'
-                }
-              >
-                <ServiceCard o={o} />
-              </Item>
+        <div className="lg:hidden">
+          <p className="mb-4 text-sm font-semibold text-neutral-800">
+            Choose a service to view details
+          </p>
+          <div className="grid gap-3">
+            {services.map((service) => (
+              <MobileService
+                key={service.id}
+                service={service}
+                open={selectedId === service.id}
+                onToggle={() => setSelectedId(service.id)}
+              />
             ))}
           </div>
-        </Stagger>
+        </div>
       </div>
     </MotionSection>
   );
 }
 
-/* ---------------- subcomponents ---------------- */
-
-function ServiceCard({ o }: { o: Offering }) {
-  const Icon = ICONS[o.badge];
-  const prefersReducedMotion = useReducedMotion();
-
+function ServiceSelector({
+  selectedId,
+  onSelect,
+}: {
+  selectedId: ServiceId;
+  onSelect: (id: ServiceId) => void;
+}) {
   return (
-    <motion.div
-      variants={fadeInUp}
-      className={[
-        'group relative flex h-full min-h[34rem] flex-col', // uniform height across rows
-        'overflow-hidden rounded-2xl border border-neutral-200 bg-white',
-        'shadow-sm transition will-change-transform',
-        'hover:bg-neutral-50 hover:shadow-md focus-within:ring-2 focus-within:ring-neutral-300',
-      ].join(' ')}
-      whileHover={
-        prefersReducedMotion
-          ? undefined
-          : { y: -4, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }
-      }
-    >
-      {/* Hover radial highlight (very light, cheap) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(80%_70%_at_50%_-10%,rgba(0,0,0,0.06),transparent_60%)]" />
+    <div className="rounded-2xl border border-neutral-200 bg-[#f7f6f2] p-5">
+      <div className="mb-5 px-1">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+          Step 1
+        </p>
+        <h3 className="mt-1 text-lg font-semibold text-neutral-950">
+          Choose a service
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+          Pick a track below. The service brief updates on the right.
+        </p>
       </div>
 
-      <div className="p-6">
-        {/* Chip */}
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700">
-          <motion.span
-            aria-hidden
-            className="grid size-5 place-items-center rounded-md bg-neutral-100 text-neutral-900"
-            whileHover={
-              prefersReducedMotion ? undefined : { scale: 1.05, rotate: 1.5 }
-            }
-            transition={{
-              type: 'spring',
-              stiffness: 220,
-              damping: 18,
-              mass: 0.6,
-            }}
-          >
-            <Icon className="size-3.5" />
-          </motion.span>
-          {o.badge}
+      {groups.map((group) => (
+        <div key={group} className="py-3">
+          <div className="mb-3 flex items-center gap-3 px-1">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-neutral-800">
+              {group}
+            </p>
+            <span className="h-px flex-1 bg-neutral-300" />
+          </div>
+          <div className="grid gap-2">
+            {services
+              .filter((service) => service.group === group)
+              .map((service) => {
+                const active = selectedId === service.id;
+
+                return (
+                  <button
+                    key={service.id}
+                    type="button"
+                    onClick={() => onSelect(service.id)}
+                    className={clsx(
+                      'group relative flex items-center justify-between gap-4 rounded-xl border px-4 py-3.5 text-left text-sm transition',
+                      active
+                        ? 'border-[#b9a56d] bg-white text-neutral-950 shadow-[inset_3px_0_0_#b9a56d]'
+                        : 'border-transparent bg-transparent text-neutral-600 hover:border-neutral-200 hover:bg-white/70 hover:text-neutral-950'
+                    )}
+                    aria-pressed={active}
+                  >
+                    <span>
+                      <span className="flex items-center gap-2 font-semibold">
+                        {service.label}
+                        {active && (
+                          <span className="rounded-full border border-[#d6c89a] bg-[#faf7ee] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7a6428]">
+                            Selected
+                          </span>
+                        )}
+                      </span>
+                      <span className="mt-1 block text-xs text-neutral-500">
+                        {service.title}
+                      </span>
+                    </span>
+                    <ChevronRight
+                      className={clsx(
+                        'size-4 shrink-0 transition',
+                        active
+                          ? 'translate-x-0 text-[#8a7434]'
+                          : 'text-neutral-400 group-hover:translate-x-0.5 group-hover:text-neutral-700'
+                      )}
+                    />
+                  </button>
+                );
+              })}
+          </div>
         </div>
+      ))}
+    </div>
+  );
+}
 
-        {/* Title & Subtitle */}
-        <h3 className="text-xl font-semibold text-neutral-900">{o.title}</h3>
-        <p className="mt-2 text-sm text-neutral-600">{o.subtitle}</p>
+function ServiceDetail({ service }: { service: Service }) {
+  return (
+    <article className="rounded-2xl border border-neutral-200 bg-white p-7">
+      <div className="mb-6 border-b border-neutral-200 pb-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+          Step 2
+        </p>
+        <h3 className="mt-1 text-lg font-semibold text-neutral-950">
+          Review what’s included
+        </h3>
+      </div>
 
-        {/* Bullets */}
-        <ul className="mt-5 flex flex-1 flex-col gap-2">
-          {o.bullets.map((t, i) => (
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+        {service.label}
+      </p>
+      <h4 className="mt-3 text-3xl font-bold tracking-tight text-neutral-950">
+        {service.title}
+      </h4>
+      <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-600">
+        {service.description}
+      </p>
+
+      <div className="mt-5 rounded-xl border border-neutral-200 bg-[#f7f6f2] p-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+          Best for
+        </p>
+        <p className="mt-2 text-sm font-medium text-neutral-900">
+          {service.bestFor}
+        </p>
+      </div>
+
+      <div className="mt-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+          Includes
+        </p>
+        <ul className="mt-3 grid gap-3">
+          {service.includes.map((item) => (
             <li
-              key={i}
-              className="flex items-start gap-3 text-sm leading-relaxed text-neutral-800"
+              key={item}
+              className="flex gap-3 text-sm leading-relaxed text-neutral-700"
             >
-              <span className="mt-2 inline-block size-1.5 rounded-full bg-neutral-900/90" />
-              <span>{t}</span>
+              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-900" />
+              <span>{item}</span>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Footer CTA */}
-      <div className="mt-auto border-t border-neutral-200 bg-white/60 p-4">
-        <Link
-          href={o.href}
-          className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-neutral-300 bg-white px-3.5 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-100"
-        >
-          Explore {o.badge}
-          <motion.span
-            aria-hidden
-            whileHover={prefersReducedMotion ? undefined : { x: 3 }}
-            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block"
+      <Link
+        href={service.href}
+        className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
+      >
+        {service.cta}
+        <ArrowRight className="size-4" />
+      </Link>
+    </article>
+  );
+}
+
+function MobileService({
+  service,
+  open,
+  onToggle,
+}: {
+  service: Service;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <article className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+      <button
+        type="button"
+        onClick={onToggle}
+        className={clsx(
+          'flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition',
+          open ? 'bg-neutral-50' : 'hover:bg-neutral-50'
+        )}
+        aria-expanded={open}
+      >
+        <span>
+          <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+            {service.label}
+          </span>
+          <span className="mt-1 block text-lg font-semibold text-neutral-950">
+            {service.title}
+          </span>
+        </span>
+        <ChevronDown
+          className={clsx('size-5 shrink-0 transition', open && 'rotate-180')}
+        />
+      </button>
+
+      {open && (
+        <div className="border-t border-neutral-200 px-5 py-5">
+          <p className="text-sm leading-relaxed text-neutral-600">
+            {service.description}
+          </p>
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+            Best for
+          </p>
+          <p className="mt-2 text-sm font-medium text-neutral-900">
+            {service.bestFor}
+          </p>
+          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+            Includes
+          </p>
+          <ul className="mt-3 grid gap-2">
+            {service.includes.map((item) => (
+              <li
+                key={item}
+                className="flex gap-3 text-sm leading-relaxed text-neutral-700"
+              >
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-900" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={service.href}
+            className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-medium text-white"
           >
-            →
-          </motion.span>
-        </Link>
-      </div>
-    </motion.div>
+            {service.cta}
+            <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      )}
+    </article>
   );
 }

@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import WhatWeDo from '@/components/WhatWeDo';
 import Services from '@/components/Services';
+import ClientLogos from '@/components/ClientLogos';
 import CTA from '@/components/CTA';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <About />
       <WhatWeDo />
       <Services />
+      <ClientLogos />
       <CTA />
 
       {/* optional: stats & CTA can be added later as separate components */}

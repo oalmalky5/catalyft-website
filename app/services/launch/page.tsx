@@ -1,288 +1,370 @@
-// app/services/launch/page.tsx
 import type { Metadata } from 'next';
-import {
-  Rocket,
-  Landmark,
-  FileBadge,
-  Handshake,
-  CreditCard,
-  ShieldCheck,
-  IdCard,
-  Stamp,
-  CheckCircle2,
-  Mail,
-  ArrowRight,
-  Sparkles,
-  Globe,
-  CircleDollarSign,
-  BookOpen,
-  Calendar,
-} from 'lucide-react';
+import { ArrowRight, CheckCircle2, Mail } from 'lucide-react';
 import ContactButton from '@/components/ContactButton';
 import LaunchFaq from '@/components/LaunchFaq';
 
 export const metadata: Metadata = {
-  title: 'Launch in Saudi – Market Entry & Setup | CataLyft',
+  title: 'Saudi Company Setup Roadmap | Launch Track | Catalyft',
   description:
-    'Straightforward market entry for Saudi Arabia. We guide attestations, secure the MISA license, issue your CR & Articles, onboard your General Manager, open a bank account, and register the right government portals.',
+    'Practical Saudi entity setup support for foreign companies, including MISA licensing, Commercial Registration, formation documents, GM onboarding, bank setup, government portals, and handover.',
 };
+
+const whoItIsFor = [
+  {
+    title: 'Foreign companies entering Saudi for the first time',
+    desc: 'You need to understand the right legal route, required documents, government steps, and operating setup before committing.',
+  },
+  {
+    title: 'Companies opening a branch or local entity',
+    desc: 'You need MISA licensing, Commercial Registration, constitutional documents, GM setup, banking, and government portal access handled in the right order.',
+  },
+  {
+    title: 'Founder-led or lean expansion teams',
+    desc: 'You do not have a Saudi operations team yet and need a local partner to manage the setup process, explain requirements, and keep the work moving.',
+  },
+];
+
+const journey = [
+  {
+    number: '01',
+    title: 'Setup route and activity review',
+    desc: 'We confirm the right setup route based on your ownership structure, business activity, hiring plan, and Saudi revenue model.',
+    output: 'Setup route recommendation, required document list, and process map.',
+  },
+  {
+    number: '02',
+    title: 'Document preparation and attestations',
+    desc: 'We tell you which parent-company documents are needed, prepare the templates where possible, and guide your team through the home-country attestation requirements.',
+    output: 'Ready-to-submit document pack.',
+  },
+  {
+    number: '03',
+    title: 'MISA license application',
+    desc: 'For foreign-owned entities, we prepare and submit the MISA investment license application and follow up on government requests or clarification points.',
+    output: 'MISA investment license, where applicable.',
+  },
+  {
+    number: '04',
+    title: 'Commercial Registration and constitutional documents',
+    desc: 'We prepare the company formation documents, align the activities, and support issuance of the Commercial Registration.',
+    output: 'Saudi Commercial Registration and formation documents.',
+  },
+  {
+    number: '05',
+    title: 'GM onboarding and operating setup',
+    desc: 'We support the General Manager onboarding process, banking steps, national address, and required government portal registrations.',
+    output:
+      'Company ready for core operations, hiring, payroll setup, and compliance follow-through.',
+  },
+  {
+    number: '06',
+    title: 'Handover and next-step tracker',
+    desc: 'We hand over access, credentials, status of each workstream, pending items, renewal dates, and recommended next actions.',
+    output: 'Clear handover tracker and operating runbook.',
+  },
+];
+
+const catalyftHandles = [
+  'Setup route planning and process coordination',
+  'MISA application preparation and submission',
+  'Commercial Registration and formation document support',
+  'GM onboarding guidance and coordination',
+  'Bank account application support',
+  'Government portal registration and handover',
+  'Tracker, status updates, blockers, and next actions',
+];
+
+const clientProvides = [
+  'Parent-company documents',
+  'Authorized signatories and board approvals where needed',
+  'Home-country attestations and notarizations',
+  'GM information and availability',
+  'Bank compliance and KYC information',
+  'Final approvals on legal structure, activity, and submitted documents',
+];
+
+const blockers = [
+  'Starting with the wrong legal structure or activity',
+  'Preparing documents that are not accepted after attestation',
+  'Missing board approvals or signatory requirements',
+  'Choosing a GM before understanding visa, iqama, and bank requirements',
+  'Treating CR issuance as the finish line, then discovering banking, portals, HR, and payroll are still not ready',
+  'Not knowing who owns each step between the foreign parent, Saudi entity, GM, bank, and government portals',
+];
+
+const startupSupport = [
+  'Eligibility review for relevant programs',
+  'Application document preparation',
+  'Introductions where there is a clear fit',
+  'Cost-aware sequencing of setup, hiring, vendors, and go-to-market steps',
+];
+
+const timelineFactors = [
+  'Whether the required documents are ready and properly attested',
+  'Whether the chosen activity is straightforward or needs extra review',
+  'How quickly the GM and signatories can complete required steps',
+  'Whether the relevant authorities request clarifications or additional evidence',
+];
+
+const jumpLinks = [
+  { href: '#who', label: 'Who it’s for' },
+  { href: '#setup-journey', label: 'Setup journey' },
+  { href: '#responsibilities', label: 'Responsibilities' },
+  { href: '#blockers', label: 'Blockers' },
+  { href: '#timeline', label: 'Timeline' },
+  { href: '#faq', label: 'FAQ' },
+];
 
 export default function LaunchPage() {
   return (
     <main className="bg-white text-neutral-900">
-      {/* HERO */}
       <section className="bg-black text-white">
-        <div className="mx-auto max-w-6xl px-6 py-24 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold tracking-widest">
-            <Rocket className="size-3.5" />
-            Launch Track
-          </span>
-          <h1 className="mt-5 text-4xl font-extrabold tracking-tight md:text-6xl">
-            Launch in Saudi, engineered to work.
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-white/80">
-            A simple, guided path to set up your Saudi presence—so your team can
-            focus on customers, not process.
-          </p>
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="max-w-4xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+              Launch track
+            </p>
+            <h1 className="mt-5 text-4xl font-bold tracking-tight md:text-6xl">
+              Set up your entity in Saudi, from licensing and registration to
+              portal handover.
+            </h1>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/70 md:text-lg">
+              Catalyft helps foreign companies move from setup decision to Saudi
+              operating readiness, including MISA licensing, Commercial
+              Registration, constitutional documents, GM onboarding, bank setup,
+              and government portal activation.
+            </p>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ContactButton className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-neutral-200">
+                Book a Saudi setup call
+                <ArrowRight className="size-4" />
+              </ContactButton>
+              <a
+                href="#setup-journey"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+              >
+                See the setup journey
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav className="border-b border-neutral-200 bg-white/95 px-6 py-4 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl gap-3 overflow-x-auto text-sm text-neutral-600">
+          {jumpLinks.map((link) => (
             <a
-              href="#included"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+              key={link.href}
+              href={link.href}
+              className="shrink-0 rounded-full border border-neutral-200 px-4 py-2 transition hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-950"
             >
-              See what’s included
-              <ArrowRight className="size-4" />
+              {link.label}
             </a>
+          ))}
+        </div>
+      </nav>
+
+      <section id="who" className="scroll-mt-24 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                Who it’s for
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                This service is for companies that need to establish in Saudi
+              </h2>
+            </div>
+
+            <div className="divide-y divide-neutral-200 border-y border-neutral-200">
+              {whoItIsFor.map((item) => (
+                <TextRow key={item.title} title={item.title} desc={item.desc} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="setup-journey"
+        className="scroll-mt-24 bg-[#f7f6f2] px-6 py-16 md:py-20"
+      >
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              Setup journey
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              The Saudi setup journey
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-neutral-600">
+              The exact path depends on your ownership, activity, documents, and
+              legal structure. This is the typical sequence we help manage.
+            </p>
           </div>
 
-          <ul className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-2 text-sm text-white/70 sm:grid-cols-3">
-            <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Clear steps, start to finish
-            </li>
-            <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> One team, one tracker
-            </li>
-            <li className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="size-4" /> Day-one readiness
-            </li>
+          <ol className="relative border-l border-neutral-300 pl-7">
+            {journey.map((step) => (
+              <JourneyStep key={step.number} {...step} />
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="responsibilities" className="scroll-mt-24 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              Responsibilities
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              What we handle, and what we need from your team
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-10 border-y border-neutral-200 py-10 lg:grid-cols-2 lg:divide-x lg:divide-neutral-200">
+            <ListColumn title="Catalyft handles" items={catalyftHandles} />
+            <ListColumn
+              title="Your team provides"
+              items={clientProvides}
+              className="lg:pl-10"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="blockers" className="scroll-mt-24 bg-black px-6 py-16 text-white">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
+              Common blockers
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              Common blockers we help you avoid
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-white/65">
+              Many setup delays happen because the route, documents, approvals,
+              or operating steps were not clear at the start.
+            </p>
+          </div>
+
+          <ul className="divide-y divide-white/10 border-y border-white/10">
+            {blockers.map((item) => (
+              <li key={item} className="flex gap-4 py-4 text-sm leading-relaxed text-white/75">
+                <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#b9a56d]" />
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
 
-      {/* WHO IT'S FOR */}
-      <section id="who" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          Who it’s for
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Built for teams that want momentum, not drag.
-        </h2>
+      <section id="startups" className="px-6 py-16">
+        <div className="mx-auto max-w-6xl rounded-3xl bg-[#f7f6f2] px-6 py-10 md:px-10">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                Startups
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                For startups: keep the setup path cost-aware
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-neutral-600">
+                If you are a startup entering Saudi, we help you understand
+                whether any relevant programs, incentives, or partner pathways
+                may fit your stage and business model.
+              </p>
+            </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          <WhoCard
-            icon={<Landmark className="size-5" />}
-            title="Foreign companies opening in KSA"
-            desc="Branch or new entity—set up correctly from day one."
-          />
-          <WhoCard
-            icon={<Handshake className="size-5" />}
-            title="Saudi partners & founder-led teams"
-            desc="Co-owned or Saudi-owned teams that want a compliant, scalable foundation fast."
-          />
-          <WhoCard
-            icon={<ShieldCheck className="size-5" />}
-            title="Operators who want clarity"
-            desc="You want plain language, clear owners, and visible next steps."
-          />
+            <div>
+              <p className="font-semibold text-neutral-950">We can help with:</p>
+              <ul className="mt-4 grid gap-3 text-sm text-neutral-700">
+                {startupSupport.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-950" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 border-t border-neutral-300 pt-5 text-sm leading-relaxed text-neutral-600">
+                <strong className="text-neutral-950">Important:</strong> Program
+                approvals, grants, discounts, and incentives are decided by the
+                relevant authorities or partners. Catalyft helps you prepare a
+                stronger path, but does not promise awards or approvals.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* WHAT'S INCLUDED */}
-      <section id="included" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          What’s included
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Everything you need to stand up in Saudi—without the guesswork.
-        </h2>
+      <section id="timeline" className="scroll-mt-24 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              Timeline
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              A typical setup can take around 90 days once required parent
+              company documents are complete and attested
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-neutral-600">
+              If the required documents are complete, properly attested, and the
+              activity does not require extra review, many setup paths can be
+              planned around a 90-day working timeline. Government reviews,
+              clarification requests, signatory availability, and document
+              corrections can extend that timeline.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-neutral-600">
+              Our role is to map the sequence, run workstreams in parallel where
+              possible, follow up on pending items, and keep your team clear on
+              what is blocking progress.
+            </p>
+          </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Feature
-            icon={<Stamp className="size-5" />}
-            title="Document attestations (guidance)"
-            desc="We give you the exact templates, pre-fill them correctly, and show you what to attest in your home country. Your team completes the local attestation step."
-          />
-          <Feature
-            icon={<ShieldCheck className="size-5" />}
-            title="MISA license (foreign investment)"
-            desc="We submit all the required attested documents to the Ministry of investment and issue your MISA license. We deal with all and any governmental blockers"
-          />
-          <Feature
-            icon={<FileBadge className="size-5" />}
-            title="CR & Articles of Association"
-            desc="We draft your Articles with the activities you choose and issue the Commercial Registration (CR) under the right legal form."
-          />
-          <Feature
-            icon={<IdCard className="size-5" />}
-            title="General Manager onboarding"
-            desc="End-to-end support from GM visa issuance to iqama, plus registering the GM in Saudi systems so they can act on behalf of the company."
-          />
-          <Feature
-            icon={<CreditCard className="size-5" />}
-            title="Corporate bank account support"
-            desc="We recommend suitable banks, prepare the application pack, coordinate meetings, and assist the GM through account opening."
-          />
-          <Feature
-            icon={<ShieldCheck className="size-5" />}
-            title="Government portal registrations"
-            desc="We register your company on the key compliance portals, create the right access, and hand over credentials securely."
-          />
+          <ol className="mt-10 grid gap-0 border-y border-neutral-200 md:grid-cols-4 md:divide-x md:divide-neutral-200">
+            {timelineFactors.map((item, index) => (
+              <li key={item} className="border-b border-neutral-200 py-6 md:border-b-0 md:px-6">
+                <span className="text-sm font-semibold text-neutral-400">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-700">
+                  {item}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* STARTUPS FOCUS (unchanged, kept concise) */}
-      <section id="startups" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          Startups
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Startup enablement: incentives, programs, and a cost-aware path.
-        </h2>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-neutral-700">
-          We work with global startups that want to enter Saudi while
-          controlling burn. We map eligibility for relevant programs, explain
-          how they work, and prepare strong application packs. Where helpful, we
-          make introductions that can reduce friction or cost. Decisions are
-          made by issuing bodies—we never promise awards, but we give you the
-          clearest path to a solid application.
-        </p>
-
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          <StartupsCard
-            icon={<Sparkles className="size-5" />}
-            title="Eligibility map"
-            desc="Which grants, incentives, and programs apply to your stage and model."
-          />
-          <StartupsCard
-            icon={<BookOpen className="size-5" />}
-            title="Program briefings"
-            desc="Plain-English outlines, evidence needed, and typical timelines."
-          />
-          <StartupsCard
-            icon={<CircleDollarSign className="size-5" />}
-            title="Application packs"
-            desc="The documents and narratives programs expect—tailored to your case."
-          />
-          <StartupsCard
-            icon={<Handshake className="size-5" />}
-            title="Introductions where useful"
-            desc="Warm intros when there’s clear fit and value on both sides."
-          />
-          <StartupsCard
-            icon={<Globe className="size-5" />}
-            title="Runway plan"
-            desc="Cost-aware sequencing of setup, first hires, vendors, and GTM."
-          />
-          <StartupsCard
-            icon={<Calendar className="size-5" />}
-            title="Program calendar"
-            desc="Keep application windows and decisions on your radar."
-          />
-        </div>
-
-        <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-4 text-xs text-neutral-600">
-          We provide guidance, preparation, and introductions. Awards and
-          discounts are granted at the discretion of authorities and partners.
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section id="process" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          How it works
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          A clear, engineered path to launch.
-        </h2>
-
-        <ol className="relative mt-10 space-y-8 border-l border-neutral-200 pl-6">
-          <Step
-            step="Step 01"
-            title="Gather & attest your documents"
-            desc="We confirm exactly what to prepare and pre-fill the right templates. Your team completes attestation in the home country."
-          />
-          <Step
-            step="Step 02"
-            title="Licenses & registrations"
-            desc="We secure the Ministry of Investment (MISA) license, draft the Articles of Association, and issue the Commercial Registration (CR)."
-          />
-          <Step
-            step="Step 03"
-            title="Operational enablement"
-            desc="We onboard your General Manager (visa → iqama), assist with corporate bank account opening, and register your company on the required government portals."
-          />
-          <Step
-            step="Step 04"
-            title="Day-one readiness & handover"
-            desc="Access, credentials, and a simple runbook so your team can operate with confidence."
-          />
-        </ol>
-      </section>
-
-      {/* TIMELINE */}
-      <section id="timeline" className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-          Timeline
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          Fastest path to go-live in KSA.
-        </h2>
-
-        <div className="mt-8 max-w-3xl rounded-2xl border border-neutral-200 p-6">
-          <ul className="list-disc pl-5 text-sm leading-relaxed text-neutral-700">
-            <li>
-              We map the critical path on day one—no vague steps, no surprises.
-            </li>
-            <li>
-              Authority timing varies; our job is to keep everything moving in
-              parallel.
-            </li>
-            <li>
-              You see owners, blockers, and next actions in a single tracker.
-            </li>
-          </ul>
-          <p className="mt-4 text-sm text-neutral-700">
-            The result: the quickest compliant route from “decision made” to
-            “operating in Saudi,” tailored to your model.
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ (collapsible, tailored to first-time Saudi expansion) */}
       <LaunchFaq />
 
-      {/* FINAL CTA — modal + email fallback */}
-      <section id="contact" className="scroll-mt-24 bg-black text-white">
-        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Ready to launch with clarity?
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-white/80">
-            Start with a quick discovery. We’ll map your path and give you a
-            clear plan.
-          </p>
+      <section id="contact" className="scroll-mt-24 bg-black px-6 py-16 text-white md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 border-y border-white/10 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+              Get in touch
+            </p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
+              Planning your Saudi setup? Start with the route.
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
+              Book a Saudi setup call and we’ll help you understand the likely
+              setup path, required documents, key blockers, and next steps.
+            </p>
+          </div>
 
-          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <ContactButton className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
-              <Mail className="size-4" />
-              Book a consultation
+          <div className="lg:ml-auto lg:max-w-sm">
+            <ContactButton className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-neutral-200 sm:w-auto lg:w-full">
+              Book a Saudi setup call
+              <ArrowRight className="size-4" />
             </ContactButton>
-
             <a
-              href="mailto:info@catalyft.sa?subject=Catalyft%20Service%20Inquiry"
-              className="text-sm text-white/70 underline underline-offset-4 hover:text-white"
+              href="mailto:info@catalyft.sa?subject=Catalyft%20Launch%20Track%20Inquiry"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/70 underline underline-offset-4 transition hover:text-white"
             >
-              or email us: info@catalyft.sa
+              <Mail className="size-4" />
+              Email info@catalyft.sa
             </a>
           </div>
         </div>
@@ -291,66 +373,67 @@ export default function LaunchPage() {
   );
 }
 
-/* ---------- small server subcomponents ---------- */
-
-function WhoCard(props: {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}) {
+function TextRow({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="rounded-2xl border border-neutral-200 p-6">
-      <div className="mb-3 grid size-9 place-items-center rounded-lg bg-neutral-100 text-neutral-900">
-        {props.icon}
-      </div>
-      <h3 className="text-lg font-semibold">{props.title}</h3>
-      <p className="mt-2 text-sm text-neutral-600">{props.desc}</p>
+    <div className="grid gap-3 py-6 md:grid-cols-[0.52fr_0.48fr] md:gap-8">
+      <h3 className="text-lg font-semibold text-neutral-950">{title}</h3>
+      <p className="text-sm leading-relaxed text-neutral-600">{desc}</p>
     </div>
   );
 }
 
-function Feature(props: {
-  icon: React.ReactNode;
+function JourneyStep({
+  number,
+  title,
+  desc,
+  output,
+}: {
+  number: string;
   title: string;
   desc: string;
+  output: string;
 }) {
   return (
-    <div className="group rounded-2xl border border-neutral-200 p-6 transition hover:border-neutral-300">
-      <div className="mb-3 grid size-9 place-items-center rounded-lg bg-black text-white">
-        {props.icon}
+    <li className="relative pb-10 last:pb-0">
+      <span className="absolute -left-[37px] top-1 grid size-5 place-items-center rounded-full border border-neutral-300 bg-[#f7f6f2]" />
+      <div className="grid gap-4 md:grid-cols-[100px_1fr]">
+        <p className="text-sm font-semibold tracking-[0.18em] text-neutral-500">
+          {number}
+        </p>
+        <div>
+          <h3 className="text-xl font-semibold tracking-tight text-neutral-950">
+            {title}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-neutral-600">{desc}</p>
+          <p className="mt-3 text-sm leading-relaxed text-neutral-800">
+            <span className="font-semibold">Output:</span> {output}
+          </p>
+        </div>
       </div>
-      <h3 className="text-lg font-semibold">{props.title}</h3>
-      <p className="mt-2 text-sm text-neutral-600">{props.desc}</p>
-    </div>
-  );
-}
-
-function Step(props: { step: string; title: string; desc: string }) {
-  return (
-    <li className="ml-2">
-      <div className="absolute -left-[9px] mt-1.5 size-4 rounded-full border border-neutral-300 bg-white" />
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-        {props.step}
-      </p>
-      <h3 className="mt-1 text-lg font-semibold">{props.title}</h3>
-      <p className="mt-1 text-sm text-neutral-600">{props.desc}</p>
     </li>
   );
 }
 
-/* Startup cards */
-function StartupsCard(props: {
-  icon: React.ReactNode;
+function ListColumn({
+  title,
+  items,
+  className,
+}: {
   title: string;
-  desc: string;
+  items: string[];
+  className?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-neutral-200 p-6 transition hover:border-neutral-300">
-      <div className="mb-3 grid size-9 place-items-center rounded-lg bg-neutral-100 text-neutral-900">
-        {props.icon}
-      </div>
-      <h3 className="text-lg font-semibold">{props.title}</h3>
-      <p className="mt-2 text-sm text-neutral-600">{props.desc}</p>
+    <div className={className}>
+      <h3 className="text-xl font-semibold text-neutral-950">{title}</h3>
+      <ul className="mt-5 grid gap-3">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3 text-sm leading-relaxed text-neutral-700">
+            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-950" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
